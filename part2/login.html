@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - GameDen</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .login-page {
+            padding: 100px 0 50px;
+            background: #f5f5f5;
+            min-height: 100vh;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 0.8rem;
+            background: #7C4DFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        .btn:hover {
+            background: #6b3ccc;
+        }
+
+        .form-switch {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .form-switch a {
+            color: #7C4DFF;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo.png" alt="GameDen Logo" class="logo-image">
+                <span>GameDen</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="games.html" class="nav-link">Games</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="login.html" class="nav-link active login-btn">Sign In</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="login-page">
+        <div class="container">
+            <!-- login page-->
+            <div class="login-container" id="loginForm">
+                <h2 style="text-align: center; color: #203079; margin-bottom: 1.5rem;">Sign In</h2>
+                
+                <form action="https://httpbin.org/get" method="GET">
+                    <div class="form-group">
+                        <label class="form-label">Username or Email:</label>
+                        <input type="text" name="username" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Password:</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px;">
+                            <input type="checkbox" name="remember" value="yes">
+                            Remember me
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn">Sign In</button>
+                </form>
+
+                <div class="form-switch">
+                    <p>Don't have an account? <a href="#" onclick="showSignup()">Sign Up</a></p>
+                </div>
+            </div>
+
+           <!-- signup page-->
+            <div class="login-container" id="signupForm" style="display: none;">
+                <h2 style="text-align: center; color: #203079; margin-bottom: 1.5rem;">Create Account</h2>
+                
+                <form action="https://httpbin.org/get" method="GET">
+                    <div class="form-group">
+                        <label class="form-label">Full Name:</label>
+                        <input type="text" name="fullname" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Username:</label>
+                        <input type="text" name="new_username" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email:</label>
+                        <input type="email" name="new_email" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Password:</label>
+                        <input type="password" name="new_password" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Confirm Password:</label>
+                        <input type="password" name="confirm_password" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Favorite Game:</label>
+                        <select name="favorite_game" class="form-control">
+                            <option value="">Choose a game</option>
+                            <option value="tictactoe">Tic Tac Toe</option>
+                            <option value="sudoku">Sudoku</option>
+                            <option value="rps">Rock Paper Scissors</option>
+                            <option value="quiz">Brain Quiz</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label style="display: flex; align-items: center; gap: 10px;">
+                            <input type="checkbox" name="terms" required>
+                            I agree to the terms and conditions
+                        </label>
+                    </div>
+
+                    <button type="submit" class="btn">Create Account</button>
+                </form>
+
+                <div class="form-switch">
+                    <p>Already have an account? <a href="#" onclick="showLogin()">Sign In</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GameDen. Student Project.</p>
+        </div>
+    </footer>
+
+    <script>
+        function showSignup() {
+            document.getElementById('loginForm').style.display = 'none';
+            document.getElementById('signupForm').style.display = 'block';
+        }
+
+        function showLogin() {
+            document.getElementById('signupForm').style.display = 'none';
+            document.getElementById('loginForm').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

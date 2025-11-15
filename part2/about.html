@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - GameDen</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .about-page {
+            padding: 100px 0 50px;
+            background: #f5f5f5;
+        }
+
+        .about-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .about-header h1 {
+            color: #203079;
+            margin-bottom: 1rem;
+        }
+
+        .about-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .team-section {
+            margin: 2rem 0;
+        }
+
+        .team-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+
+        .team-table th {
+            background: #7C4DFF;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .team-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .team-table tr:hover {
+            background: #f9f9f9;
+        }
+
+        .course-info {
+            background: #e8f4f8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+
+        .goals-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .goals-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .goals-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #7C4DFF;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="images/logo.png" alt="GameDen Logo" class="logo-image">
+                <span>GameDen</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="games.html" class="nav-link">Games</a></li>
+                <li><a href="about.html" class="nav-link active">About</a></li>
+                <li><a href="contact.html" class="nav-link">Contact</a></li>
+                <li><a href="login.html" class="nav-link login-btn">Sign In</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="about-page">
+        <div class="container">
+            <div class="about-header">
+                <h1>About GameDen</h1>
+                <p>A simple brain games website for our course project</p>
+            </div>
+
+            <div class="about-content">
+                <h2>What is GameDen?</h2>
+                <p>GameDen is a website with fun brain games. We made it for our COMP3700 course project. It has games like Tic Tac Toe, Sudoku, and more to help improve thinking skills.</p>
+
+                <div class="team-section">
+                    <h2>Our Team</h2>
+                    <table class="team-table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Student ID</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Hajer Said Al saqrii</td>
+                                <td>145580</td>
+                                <td>145580@student.squ.edu.om</td>
+                            </tr>
+                            <tr>
+                                <td>Fatima Samir Karaa</td>
+                                <td>146562</td>
+                                <td>146562@student.squ.edu.om</td>
+                            </tr>
+                            <tr>
+                                <td>Muna Salim Al Maashani</td>
+                                <td>144656</td>
+                                <td>144656@student.squ.edu.om</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="course-info">
+                    <h2>Course Information</h2>
+                    <p><strong>Course:</strong> COMP3700 – Introduction to Web Computing</p>
+                    <p><strong>Instructor:</strong> Dr. Ahmad Soleimani</p>
+                    <p><strong>Semester:</strong> Fall 2025</p>
+                    <p><strong>University:</strong> Sultan Qaboos University</p>
+                </div>
+
+                <div class="project-goals">
+                    <h2>What We Want to Do</h2>
+                    <ul class="goals-list">
+                        <li>Make a easy-to-use website</li>
+                        <li>Add fun brain games</li>
+                        <li>Make it work on phones and computers</li>
+                        <li>Let users track their scores</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 GameDen. Student Project.</p>
+        </div>
+    </footer>
+</body>
+</html>
