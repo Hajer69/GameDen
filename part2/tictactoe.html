@@ -3,8 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Have fun with GameDen, Play interactive online games! Challenge yourself with Sudoku, Rock Paper Scissors, and many more games.">
     <title>Tic Tac Toe - GameDen</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .game-rules-table {
+            background-color: #e2e8f0;
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .difficulty-table{
+            background-color: #e2e8f0;
+           
+        }
+        .btn-secondary {
+            background: #7C4DFF;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #6b3ccc;
+        }
+        .game-description {
+            font-size: 1.1rem;
+            color: #b4b6b9;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .game-info h1 {
+    
+            color: #7a9ee1;
+            
+        }
+         .game-features {
+            
+            margin: 2rem 0;
+        }
+
+        .game-features h2 {
+        
+            margin-bottom: 1rem;
+            color: #8f9ddc;
+        }
+
+        .game-features ul {
+            color: #c9ced6;
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .game-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .game-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #7C4DFF;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <nav class="navbar">
