@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Have fun with GameDen, Play interactive online games! Challenge yourself with Sudoku, Rock Paper Scissors, and many more games.">
     <title>Login - GameDen</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .login-page {
-            padding: 100px 0 50px;
-            background: #f5f5f5;
-            min-height: 100vh;
-        }
+        
 
+    
         .login-container {
             max-width: 400px;
             margin: 0 auto;
@@ -37,6 +35,13 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-size: 1rem;
+            transition: 0.3;
+        }
+    
+        .form-control:hover {
+            border-color: rgb(97, 84, 213);
+            box-shadow: 0 0 8px rgb(97, 84, 213);
+            
         }
 
         .btn {
@@ -83,7 +88,8 @@
         </div>
     </nav>
 
-    <section class="login-page">
+    
+    <section class="login-page" style="margin-top: 50px;">
         <div class="container">
             <!-- login page-->
             <div class="login-container" id="loginForm">
@@ -111,65 +117,11 @@
                 </form>
 
                 <div class="form-switch">
-                    <p>Don't have an account? <a href="#" onclick="showSignup()">Sign Up</a></p>
+                    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
                 </div>
             </div>
 
-           <!-- signup page-->
-            <div class="login-container" id="signupForm" style="display: none;">
-                <h2 style="text-align: center; color: #203079; margin-bottom: 1.5rem;">Create Account</h2>
-                
-                <form action="https://httpbin.org/get" method="GET">
-                    <div class="form-group">
-                        <label class="form-label">Full Name:</label>
-                        <input type="text" name="fullname" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Username:</label>
-                        <input type="text" name="new_username" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Email:</label>
-                        <input type="email" name="new_email" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Password:</label>
-                        <input type="password" name="new_password" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Confirm Password:</label>
-                        <input type="password" name="confirm_password" class="form-control" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Favorite Game:</label>
-                        <select name="favorite_game" class="form-control">
-                            <option value="">Choose a game</option>
-                            <option value="tictactoe">Tic Tac Toe</option>
-                            <option value="sudoku">Sudoku</option>
-                            <option value="rps">Rock Paper Scissors</option>
-                            <option value="quiz">Brain Quiz</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label style="display: flex; align-items: center; gap: 10px;">
-                            <input type="checkbox" name="terms" required>
-                            I agree to the terms and conditions
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn">Create Account</button>
-                </form>
-
-                <div class="form-switch">
-                    <p>Already have an account? <a href="#" onclick="showLogin()">Sign In</a></p>
-                </div>
-            </div>
+           
         </div>
     </section>
 
@@ -179,16 +131,6 @@
         </div>
     </footer>
 
-    <script>
-        function showSignup() {
-            document.getElementById('loginForm').style.display = 'none';
-            document.getElementById('signupForm').style.display = 'block';
-        }
 
-        function showLogin() {
-            document.getElementById('signupForm').style.display = 'none';
-            document.getElementById('loginForm').style.display = 'block';
-        }
-    </script>
 </body>
 </html>
