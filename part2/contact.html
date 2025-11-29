@@ -5,36 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Have fun with GameDen, Play interactive online games! Challenge yourself with Sudoku, Rock Paper Scissors, and many more games.">
     <title>Contact Us - GameDen</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+     <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- Custom theme colors -->
     <style>
-
-
-        .contact-header {
-            color: #ededef;
-            text-align: center;
-            margin-bottom: 2rem;
-            
-            
+        :root {
+            --primary-blue: #203079;
+            --primary-purple: #7C4DFF;
+            --accent-orange: #FFB300;
         }
-
-        .contact-form {
-    
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .bg-primary-custom {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
         }
-
-        .form-group {
-            margin-bottom: 1rem;
+        .btn-primary-custom {
+            background-color: var(--accent-orange) !important;
+            border-color: var(--accent-orange) !important;
         }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
+        .btn-purple {
+            background-color: var(--primary-purple) !important;
+            border-color: var(--primary-purple) !important;
+            color: white !important;
         }
-
+        .text-primary-custom {
+            color: var(--primary-blue) !important;
+        }
         .form-control {
             width: 100%;
             padding: 0.7rem;
@@ -54,7 +50,7 @@
             resize: vertical;
         }
 
-        .submit-btn {
+        .btn {
             background: #7C4DFF;
             color: white;
             padding: 0.8rem 2rem;
@@ -65,94 +61,133 @@
             width: 100%;
         }
 
-        .submit-btn:hover {
+        .btn:hover {
             background: #6b3ccc;
         }
-
-        .contact-info {
-            text-align: center;
-            margin-top: 2rem;
-            padding: 1rem;
-            background: #a691d1;
-            border-radius: 10px;
+        #logo-icon {
+           width: 40px; 
+           height: 40px;
         }
+
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="images/logo.png" alt="GameDen Logo" class="logo-image">
-                <span>GameDen</span>
+    <!-- Bootstrap Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
+                <img src="images/logo.png" alt="GameDen Logo" class="me-2" style="width: 40px; height: 40px;">
+                GameDen
+            </a>
+            
+            
+            
+            <div class="navbar navbar-expand-sm" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="games.html">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a>
+                    </li>
+                </ul>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="games.html" class="nav-link">Games</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link active">Contact</a></li>
-                <li><a href="login.html" class="nav-link login-btn">Sign In</a></li>
-            </ul>
         </div>
     </nav>
 
-    <section class="contact-page">
+    <!-- Contact Form -->
+    <section class="py-5 mt-5">
         <div class="container">
-            <div class="contact-header">
-                <h1>Contact Us</h1>
-                <p>Have questions? Send us a message!</p>
-            </div>
-
-            <div class="contact-form">
-                <form action="https://httpbin.org/get" method="GET">
-                    <div class="form-group">
-                        <label class="form-label">Your Name:</label>
-                        <input type="text" name="name" class="form-control" required>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Header -->
+                    <div class="text-center mb-5">
+                        <h1 class="display-4 fw-bold text-primary-custom mb-3">Contact Us</h1>
+                        <p class="text-muted">Have questions? Send us a message!</p>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Email Address:</label>
-                        <input type="email" name="email" class="form-control" required>
+                    <!-- Contact Form -->
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <form action="https://httpbin.org/get" method="GET" class="needs-validation" novalidate>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="name" class="form-label fw-bold">Your Name:</label>
+                                        <input type="text" class="form-control" id="name" name="name" required>
+                                        <div class="invalid-feedback">
+                                            Please provide your name.
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="col-md-6 mb-3">
+                                        <label for="email" class="form-label fw-bold">Email Address:</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <div class="invalid-feedback">
+                                            Please provide a valid email.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label fw-bold">Subject:</label>
+                                    <select class="form-control" id="subject" name="subject" required>
+                                        <option value="">Choose subject</option>
+                                        <option value="problem">Problem with game</option>
+                                        <option value="suggestion">Game suggestion</option>
+                                        <option value="question">General question</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a subject.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="message" class="form-label fw-bold">Message:</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" required placeholder="Tell us what you need..."></textarea>
+                                    <div class="invalid-feedback">
+                                        Please enter your message.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="newsletter" name="newsletter" value="yes">
+                                    <label class="form-check-label" for="newsletter">Send me game updates</label>
+                                </div>
+
+                                <button type="submit"  class="btn  btn-lg w-100 text-white">Send Message</button>
+                            </form>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Subject:</label>
-                        <select name="subject" class="form-control" required>
-                            <option value="">Choose subject</option>
-                            <option value="problem">Problem with game</option>
-                            <option value="suggestion">Game suggestion</option>
-                            <option value="question">General question</option>
-                        </select>
+                    <!-- Contact Info -->
+                    <div class="card mt-4 border-0 bg-light">
+                        <div class="card-body text-center p-4">
+                            <h3 class="h4 fw-bold text-primary-custom mb-3">Our Team</h3>
+                            <p class="text-mute mb-1"><strong>Hajer, Fatima, Muna</strong></p>
+                            <p class="text-primary mb-1">COMP3700 - Fall 2025</p>
+                            <p class="mb-0">Sultan Qaboos University</p>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label class="form-label">Message:</label>
-                        <textarea name="message" class="form-control" required placeholder="Tell us what you need..."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label style="display: flex; align-items: center; gap: 10px;">
-                            <input type="checkbox" name="newsletter" value="yes">
-                            Send me game updates
-                        </label>
-                    </div>
-
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
-            </div>
-
-            <div class="contact-info">
-                <h3>Our Team</h3>
-                <p><strong>Hajer, Fatima, Muna</strong></p>
-                <p>COMP3700 - Fall 2025</p>
-                <p>Sultan Qaboos University</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 GameDen. Student Project.</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 GameDen. Student Project.</p>
         </div>
     </footer>
+
 </body>
 </html>
