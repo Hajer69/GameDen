@@ -5,65 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Have fun with GameDen, Play interactive online games! Challenge yourself with Sudoku, Rock Paper Scissors, and many more games.">
     <title>About Us - GameDen</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+     <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- Custom theme colors -->
     <style>
-        
-
-        .about-header {
-            text-align: center;
-            margin-bottom: 2rem;
+        :root {
+            --primary-blue: #203079;
+            --primary-purple: #7C4DFF;
+            --accent-orange: #FFB300;
         }
-
-        .about-header h1 {
-            color: #ededef;
-            margin-bottom: 1rem;
+        .display-4 {
+            color: #203079;
         }
-        .about-header p {
-            color: #ededef;
-            margin-bottom: 1rem;
+        .h3 {
+            color: #203079;
         }
-
-        .about-content {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 2rem;
+        .bg-primary-custom {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
         }
-
-        .team-section {
-            margin: 2rem 0;
+        .btn-primary-custom {
+            background-color: var(--accent-orange) !important;
+            border-color: var(--accent-orange) !important;
         }
-
-        .team-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
+        .btn-purple {
+            background-color: var(--primary-purple) !important;
+            border-color: var(--primary-purple) !important;
+            color: white !important;
         }
-
-        .team-table th {
+        .table th{
             background: #7C4DFF;
             color: white;
             padding: 1rem;
             text-align: left;
         }
-
-        .team-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .team-table tr:hover {
-            background: #f9f9f9;
-        }
-
-        .course-info {
-            background: #e8f4f8;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-        }
-
         .goals-list {
             list-style: none;
             padding: 0;
@@ -82,90 +58,130 @@
             color: #7C4DFF;
             font-weight: bold;
         }
+        .course-info {
+            background: #e8f4f8;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        #logo-icon {
+           width: 40px; 
+           height: 40px;
+        }
+
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="images/logo.png" alt="GameDen Logo" class="logo-image">
-                <span>GameDen</span>
+    <!-- Bootstrap Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
+                <img id="logo-icon" src="images/logo.png" alt="GameDen Logo" class="me-2">
+                GameDen
+            </a>
+            
+            <div class="navbar navbar-expand-sm" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="games.html">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a>
+                    </li>
+                </ul>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="games.html" class="nav-link">Games</a></li>
-                <li><a href="about.html" class="nav-link active">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-                <li><a href="login.html" class="nav-link login-btn">Sign In</a></li>
-            </ul>
         </div>
     </nav>
 
-    <section class="about-page">
+    <!-- About Content -->
+    <section class="py-5 mt-5 bg-light">
         <div class="container">
-            <div class="about-header">
-                <h1>About GameDen</h1>
-                <p>A simple brain games website for our course project</p>
-            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Header -->
+                    <div class="text-center mb-5">
+                        <h1 class="display-4 fw-bold mb-3">About GameDen</h1>
+                        <p class="text-muted">A simple brain games website for our course project</p>
+                    </div>
 
-            <div class="about-content">
-                <h2>What is GameDen?</h2>
-                <p>GameDen is a website with fun brain games. We made it for our COMP3700 course project. It has games like Tic Tac Toe, Sudoku, and more to help improve thinking skills.</p>
+                    <!-- Main Content Card -->
+                    <div class="card shadow-sm border-0 mb-4">
+                        <div class="card-body p-4">
+                            <h2 class="h3 fw-bold mb-3">What is GameDen?</h2>
+                            <p class="mb-4">GameDen is a website with fun brain games. We made it for our COMP3700 course project. It has games like Tic Tac Toe, Sudoku, and more to help improve thinking skills.</p>
 
-                <div class="team-section">
-                    <h2>Our Team</h2>
-                    <table class="team-table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Student ID</th>
-                                <th>Email</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Hajer Said Al saqrii</td>
-                                <td>145580</td>
-                                <td>145580@student.squ.edu.om</td>
-                            </tr>
-                            <tr>
-                                <td>Fatima Samir Karaa</td>
-                                <td>146562</td>
-                                <td>146562@student.squ.edu.om</td>
-                            </tr>
-                            <tr>
-                                <td>Muna Salim Al Maashani</td>
-                                <td>144656</td>
-                                <td>144656@student.squ.edu.om</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                            <!-- Team Section -->
+                            <div class="mb-4">
+                                <h2 class="h3 fw-bold mb-3">Our Team</h2>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead class="table">
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Student ID</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Hajer Said Al saqrii</td>
+                                                <td>145580</td>
+                                                <td>145580@student.squ.edu.om</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Fatima Samir Karaa</td>
+                                                <td>146562</td>
+                                                <td>146562@student.squ.edu.om</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Muna Salim Al Maashani</td>
+                                                <td>144656</td>
+                                                <td>144656@student.squ.edu.om</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
 
-                <div class="course-info">
-                    <h2>Course Information</h2>
-                    <p><strong>Course:</strong> COMP3700 – Introduction to Web Computing</p>
-                    <p><strong>Instructor:</strong> Dr. Ahmad Soleimani</p>
-                    <p><strong>Semester:</strong> Fall 2025</p>
-                    <p><strong>University:</strong> Sultan Qaboos University</p>
-                </div>
+                            <!-- Course Info -->
+                            <div class="course-info">
+                                <h2 class="h4 fw-bold mb-3">Course Information</h2>
+                                <p class="mb-1"><strong>Course:</strong> COMP3700 – Introduction to Web Computing</p>
+                                <p class="mb-1"><strong>Instructor:</strong> Dr. Ahmad Soleimani</p>
+                                <p class="mb-1"><strong>Semester:</strong> Fall 2025</p>
+                                <p class="mb-0"><strong>University:</strong> Sultan Qaboos University</p>
+                            </div>
 
-                <div class="project-goals">
-                    <h2>What We Want to Do</h2>
-                    <ul class="goals-list">
-                        <li>Make a easy-to-use website</li>
-                        <li>Add fun brain games</li>
-                        <li>Make it work on phones and computers</li>
-                        <li>Let users track their scores</li>
-                    </ul>
+                            <!-- Project Goals -->
+                            <div>
+                                <h2 class="h3 fw-bold text-primary-custom mb-3">What We Want to Do</h2>
+                                <ul class="goals-list">
+                                    <li class="mb-2"> Make a easy-to-use website</li>
+                                    <li class="mb-2"> Add fun brain games</li>
+                                    <li class="mb-2"> Make it work on phones and computers</li>
+                                    <li class="mb-0"> Let users track their scores</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 GameDen. Student Project.</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 GameDen. Student Project.</p>
         </div>
     </footer>
 </body>
