@@ -5,155 +5,209 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Have fun with GameDen, Play interactive online games! Challenge yourself with Sudoku, Rock Paper Scissors, and many more games.">
     <title>Sudoku Challenge - GameDen</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+     <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- Custom theme colors -->
     <style>
-        .game-rules-table {
-            background-color: #e2e8f0;
+        :root {
+            --primary-blue: #203079;
+            --primary-purple: #7C4DFF;
+            --accent-orange: #FFB300;
+        }
+        .bg-primary-custom {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
+        }
+        .btn-primary-custom {
+            background-color: #FFB300;
+            color: white !important;
+        }
+        .btn-primary-custom:hover {
+            background-color: #d4980c;
+            color: white !important;
+        }
+        .btn-purple {
+            background-color: var(--primary-purple) !important;
+            border-color: var(--primary-purple) !important;
+            color: white !important;
+        }
+        .text-primary-custom {
+            color: var(--primary-blue) !important;
+        }
+        .game-detail-image {
             width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            overflow: hidden;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
         }
-        .difficulty-table{
-            background-color: #e2e8f0;
-           
+        #logo-icon {
+           width: 40px; 
+           height: 40px;
         }
-        .btn-secondary {
-            background: #7C4DFF;
+        .card-header {
+            background: #203079;
             color: white;
+            padding: 1rem;
+            text-align: left;
         }
-
-        .btn-secondary:hover {
-            background: #6b3ccc;
+        .table th{
+            background: #FFB300;
+            color: white;
+            padding: 1rem;
+            text-align: left;
         }
-        .game-description {
-            font-size: 1.1rem;
-            color: #b4b6b9;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        .game-info h1 {
-    
-            color: #95b1e4;
-            
-        }
-        
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <div class="logo-icon">🎮</div>
-                <span>GameDen</span>
+    <!-- Bootstrap Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
+                <img id="logo-icon"  src="images/logo.png" alt="GameDen Logo" class="me-2" >
+                GameDen
+            </a>
+            
+            <div class="navbar navbar-expand-sm" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="games.html">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a>
+                    </li>
+                </ul>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="games.html" class="nav-link">Games</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-                <li><a href="signin.html" class="nav-link login-btn">Sign In</a></li>
-            </ul>
         </div>
     </nav>
 
-    <section class="game-detail">
+    <!-- Game Detail Content -->
+    <section class="py-5 mt-5">
         <div class="container">
-            <div class="game-header">
-                <img src="images/sudoku.jpg" alt="Sudoku" class="game-detail-image">
-                <div class="game-info">
-                    <h1>Sudoku Challenge</h1>
-                    <p class="game-description">A classic number puzzle that enhances logical thinking and problem-solving skills.</p>
-                    <div class="game-meta">
-                        <span class="game-category">Puzzle</span>
-                        <span class="game-difficulty">Medium</span>
-                        <span class="game-players">1 Player</span>
+            <div class="row">
+                <!-- Game Image -->
+                <div class="col-lg-4 mb-4">
+                    <img src="images/sudoku.jpg" alt="Sudoku" class="game-detail-image shadow">
+                </div>
+                
+                <!-- Game Info -->
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold text-primary-custom mb-3">Sudoku Challenge</h1>
+                    <p class="lead text-muted mb-4">A classic number puzzle that enhances logical thinking and problem-solving skills.</p>
+                    
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <button type="button" class="btn btn-outline-info">Puzzle</button>
+                        <button type="button" class="btn btn-outline-warning">Medium</button>
+                        <button type="button" class="btn btn-outline-success">1 Player</button>
                     </div>
                 </div>
             </div>
 
             <!-- Game Rules Table -->
-            <table class="game-rules-table">
-                <thead>
-                    <tr>
-                        <th colspan="2">Game Rules & Information</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Objective</td>
-                        <td>Fill the 9x9 grid with numbers 1-9 following specific rules</td>
-                    </tr>
-                    <tr>
-                        <td>Rules</td>
-                        <td>Each row, column, and 3x3 box must contain all digits from 1 to 9</td>
-                    </tr>
-                    <tr>
-                        <td>Skills Developed</td>
-                        <td>Logical reasoning, Pattern recognition, Concentration</td>
-                    </tr>
-                    <tr>
-                        <td>Difficulty Levels</td>
-                        <td>Easy, Medium, Hard, Expert</td>
-                    </tr>
-                    <tr>
-                        <td>Average Game Time</td>
-                        <td>10-30 minutes</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-purple text-white">
+                    <h3 class="h4 mb-0">Game Rules & Information</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold" >Objective</td>
+                                    <td>Fill the 9x9 grid with numbers 1-9 following specific rules</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Rules</td>
+                                    <td>Each row, column, and 3x3 box must contain all digits from 1 to 9</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Skills Developed</td>
+                                    <td>Logical reasoning, Pattern recognition, Concentration</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Difficulty Levels</td>
+                                    <td>Easy, Medium, Hard, Expert</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Average Game Time</td>
+                                    <td>10-30 minutes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
             <!-- Difficulty Levels Table -->
-            <table class="difficulty-table">
-                <thead>
-                    <tr>
-                        <th>Difficulty</th>
-                        <th>Pre-filled Numbers</th>
-                        <th>Estimated Time</th>
-                        <th>Skill Level</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Easy</td>
-                        <td>36-40 numbers</td>
-                        <td>5-10 minutes</td>
-                        <td>Beginner</td>
-                    </tr>
-                    <tr>
-                        <td>Medium</td>
-                        <td>32-35 numbers</td>
-                        <td>10-20 minutes</td>
-                        <td>Intermediate</td>
-                    </tr>
-                    <tr>
-                        <td>Hard</td>
-                        <td>28-31 numbers</td>
-                        <td>20-40 minutes</td>
-                        <td>Advanced</td>
-                    </tr>
-                    <tr>
-                        <td>Expert</td>
-                        <td>22-27 numbers</td>
-                        <td>30-60 minutes</td>
-                        <td>Expert</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-primary-custom text-white">
+                    <h3 class="h4 mb-0">Difficulty Levels</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table">
+                                <tr>
+                                    <th>Difficulty</th>
+                                    <th>Pre-filled Numbers</th>
+                                    <th>Estimated Time</th>
+                                    <th>Skill Level</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Easy</td>
+                                    <td>36-40 numbers</td>
+                                    <td>5-10 minutes</td>
+                                    <td>Beginner</td>
+                                </tr>
+                                <tr>
+                                    <td>Medium</td>
+                                    <td>32-35 numbers</td>
+                                    <td>10-20 minutes</td>
+                                    <td>Intermediate</td>
+                                </tr>
+                                <tr>
+                                    <td>Hard</td>
+                                    <td>28-31 numbers</td>
+                                    <td>20-40 minutes</td>
+                                    <td>Advanced</td>
+                                </tr>
+                                <tr>
+                                    <td>Expert</td>
+                                    <td>22-27 numbers</td>
+                                    <td>30-60 minutes</td>
+                                    <td>Expert</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-            <div class="game-actions">
-                <a href="#" class="btn btn-primary">Play Game (Coming Soon)</a>
-                <a href="games.html" class="btn btn-secondary">Back to Games</a>
+            <!-- Action Buttons -->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a href="#" class="btn btn-primary-custom btn-lg px-4 me-md-2 text-white">Play Game (Coming Soon)</a>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 GameDen. All rights reserved.</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 GameDen. All rights reserved.</p>
         </div>
     </footer>
+
+   
 </body>
 </html>
