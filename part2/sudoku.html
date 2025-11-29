@@ -20,12 +20,8 @@
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
         }
         .btn-primary-custom {
-            background-color: #FFB300;
-            color: white !important;
-        }
-        .btn-primary-custom:hover {
-            background-color: #d4980c;
-            color: white !important;
+            background-color: var(--accent-orange) !important;
+            border-color: var(--accent-orange) !important;
         }
         .btn-purple {
             background-color: var(--primary-purple) !important;
@@ -51,11 +47,42 @@
             padding: 1rem;
             text-align: left;
         }
+        .goals-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .goals-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .goals-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #7C4DFF;
+            font-weight: bold;
+        }
         .table th{
             background: #FFB300;
             color: white;
             padding: 1rem;
             text-align: left;
+        }
+        .btn-game {
+            background: #FFB300;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .btn-game:hover {
+            background: #c18a09;
+            color: white;
         }
     </style>
 </head>
@@ -134,8 +161,8 @@
                                     <td>Logical reasoning, Pattern recognition, Concentration</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">Difficulty Levels</td>
-                                    <td>Easy, Medium, Hard, Expert</td>
+                                    <td class="fw-bold">Game Features</td>
+                                    <td>3 Difficulty levels, Timer, Hints, Auto-check</td>
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">Average Game Time</td>
@@ -182,21 +209,35 @@
                                     <td>20-40 minutes</td>
                                     <td>Advanced</td>
                                 </tr>
-                                <tr>
-                                    <td>Expert</td>
-                                    <td>22-27 numbers</td>
-                                    <td>30-60 minutes</td>
-                                    <td>Expert</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
 
+            <!-- Game Features -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body">
+                    <h3 class="h4 fw-bold text-primary-custom mb-3">Features</h3>
+                    <ul class="goals-list">
+                        <li class="mb-2">3 difficulty levels (Easy, Medium, Hard)</li>
+                        <li class="mb-2">Smart timer to track solving time</li>
+                        <li class="mb-2">Hint system with 3 hints per game</li>
+                        <li class="mb-2">Auto-check solution feature</li>
+                        <li class="mb-2">Smart puzzle solver</li>
+                        <li class="mb-0">Error detection and highlighting</li>
+                    </ul>
+                </div>
+            </div>
+
             <!-- Action Buttons -->
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <a href="#" class="btn btn-primary-custom btn-lg px-4 me-md-2 text-white">Play Game (Coming Soon)</a>
+                <a href="sudoku-game.html" class="btn btn-game btn-lg px-4 me-md-2">
+                    🎮 Play Sudoku Game
+                </a>
+                <a href="games.html" class="btn btn-outline-primary btn-lg px-4">
+                    ← Back to Games
+                </a>
             </div>
         </div>
     </section>
@@ -207,7 +248,5 @@
             <p class="mb-0">&copy; 2025 GameDen. All rights reserved.</p>
         </div>
     </footer>
-
-   
 </body>
 </html>
