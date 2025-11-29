@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Sudoku - Challenging number puzzle game">
+    <title>Play Sudoku - GameDen</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom theme colors -->
+    <style>
+        :root {
+            --primary-blue: #203079;
+            --primary-purple: #7C4DFF;
+            --accent-orange: #FFB300;
+        }
+        .bg-primary-custom {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
+        }
+        .btn-primary-custom {
+            background-color: var(--accent-orange) !important;
+            border-color: var(--accent-orange) !important;
+        }
+        .btn-purple {
+            background-color: var(--primary-purple) !important;
+            border-color: var(--primary-purple) !important;
+            color: white !important;
+        }
+        .text-primary-custom {
+            color: var(--primary-blue) !important;
+        }
+        #logo-icon {
+           width: 40px; 
+           height: 40px;
+        }
+        
+        /* Sudoku Styles */
+        .game-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .sudoku-board {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 1px;
+            background: #333;
+            border: 3px solid #333;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .sudoku-cell {
+            aspect-ratio: 1;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: 1px solid #ccc;
+        }
+        .sudoku-cell:hover {
+            background-color: #f0f8ff;
+        }
+        .sudoku-cell.given {
+            background-color: #f8f9fa;
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+        .sudoku-cell.user-input {
+            color: var(--accent-orange);
+        }
+        .sudoku-cell.error {
+            background-color: #ffe6e6;
+            color: #dc3545;
+        }
+        .sudoku-cell.selected {
+            background-color: #e3f2fd;
+            border: 2px solid var(--primary-purple);
+        }
+        .sudoku-cell:nth-child(3n) {
+            border-right: 2px solid #333;
+        }
+        .sudoku-cell:nth-child(9n) {
+            border-right: 1px solid #ccc;
+        }
+        .sudoku-cell:nth-child(n+19):nth-child(-n+27),
+        .sudoku-cell:nth-child(n+46):nth-child(-n+54) {
+            border-bottom: 2px solid #333;
+        }
+        .number-pad {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px;
+            margin: 20px 0;
+        }
+        .number-btn {
+            aspect-ratio: 1;
+            border: 2px solid var(--primary-purple);
+            background: white;
+            color: var(--primary-purple);
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .number-btn:hover {
+            background: var(--primary-purple);
+            color: white;
+            transform: scale(1.05);
+        }
+        .number-btn.clear {
+            grid-column: span 2;
+            background: #ff6b6b;
+            color: white;
+            border-color: #ff6b6b;
+        }
+        .game-info {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .game-status {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            min-height: 40px;
+            color: var(--primary-blue);
+        }
+        .difficulty-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .btn-difficulty {
+            padding: 10px 20px;
+            border: 2px solid var(--primary-purple);
+            background: white;
+            color: var(--primary-purple);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .btn-difficulty.active {
+            background: var(--primary-purple);
+            color: white;
+        }
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            color: var(--accent-orange);
+            margin: 10px 0;
+        }
+        .hints-remaining {
+            text-align: center;
+            color: var(--primary-purple);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Bootstrap Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
+                <img id="logo-icon" src="images/logo.png" alt="GameDen Logo" class="me-2">
+                GameDen
+            </a>
+            
+            <div class="navbar navbar-expand-sm" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="games.html">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Game Content -->
+    <section class="py-5 mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Header -->
+                    <div class="text-center mb-4">
+                        <h1 class="display-5 fw-bold text-primary-custom mb-3">Sudoku Challenge</h1>
+                        <p class="text-muted">Fill the grid so every row, column, and 3x3 box contains 1-9</p>
+                    </div>
+
+                    <!-- Difficulty Selection -->
+                    <div class="difficulty-buttons">
+                        <button class="btn-difficulty active" onclick="setDifficulty('easy')">Easy</button>
+                        <button class="btn-difficulty" onclick="setDifficulty('medium')">Medium</button>
+                        <button class="btn-difficulty" onclick="setDifficulty('hard')">Hard</button>
+                    </div>
+
+                    <!-- Game Container -->
+                    <div class="game-container">
+                        <!-- Game Info -->
+                        <div class="game-info text-center mb-4">
+                            <div class="timer" id="timer">00:00</div>
+                            <div class="hints-remaining">Hints remaining: <span id="hintsCount">3</span></div>
+                            <div class="game-status" id="gameStatus">
+                                Select a cell and enter numbers 1-9
+                            </div>
+                        </div>
+
+                        <!-- Sudoku Board -->
+                        <div class="sudoku-board" id="sudokuBoard">
+                            <!-- Cells will be generated by JavaScript -->
+                        </div>
+
+                        <!-- Number Pad -->
+                        <div class="number-pad">
+                            <button class="number-btn" onclick="inputNumber(1)">1</button>
+                            <button class="number-btn" onclick="inputNumber(2)">2</button>
+                            <button class="number-btn" onclick="inputNumber(3)">3</button>
+                            <button class="number-btn" onclick="inputNumber(4)">4</button>
+                            <button class="number-btn" onclick="inputNumber(5)">5</button>
+                            <button class="number-btn" onclick="inputNumber(6)">6</button>
+                            <button class="number-btn" onclick="inputNumber(7)">7</button>
+                            <button class="number-btn" onclick="inputNumber(8)">8</button>
+                            <button class="number-btn" onclick="inputNumber(9)">9</button>
+                            <button class="number-btn clear" onclick="clearCell()">Clear</button>
+                        </div>
+
+                        <!-- Game Controls -->
+                        <div class="controls">
+                            <button class="btn btn-primary-custom" onclick="newGame()">
+                                New Game
+                            </button>
+                            <button class="btn btn-outline-info" onclick="getHint()">
+                                Get Hint
+                            </button>
+                            <button class="btn btn-outline-warning" onclick="checkSolution()">
+                                Check Solution
+                            </button>
+                            <button class="btn btn-outline-success" onclick="solvePuzzle()">
+                                Solve Puzzle
+                            </button>
+                            <a href="games.html" class="btn btn-outline-primary">
+                                All Games
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 GameDen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Game Code -->
+    <script>
+        // Game state variables
+        let currentPuzzle = [];
+        let solution = [];
+        let userInput = [];
+        let selectedCell = null;
+        let startTime = null;
+        let timerInterval = null;
+        let hintsRemaining = 3;
+        let currentDifficulty = 'easy';
+
+        // Initialize game when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeGame();
+        });
+
+        // Initialize game
+        function initializeGame() {
+            createBoard();
+            newGame();
+        }
+
+        // Create Sudoku board
+        function createBoard() {
+            const board = document.getElementById('sudokuBoard');
+            board.innerHTML = '';
+            
+            for (let i = 0; i < 81; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'sudoku-cell';
+                cell.setAttribute('data-index', i);
+                cell.addEventListener('click', () => selectCell(i));
+                board.appendChild(cell);
+            }
+        }
+
+        // Select cell
+        function selectCell(index) {
+            // Deselect previous cell
+            if (selectedCell !== null) {
+                const prevCell = document.querySelector(`[data-index="${selectedCell}"]`);
+                if (prevCell) prevCell.classList.remove('selected');
+            }
+            
+            const row = Math.floor(index / 9);
+            const col = index % 9;
+            
+            // Select new cell if it's not a given number
+            if (!currentPuzzle[row][col]) {
+                selectedCell = index;
+                document.querySelector(`[data-index="${selectedCell}"]`).classList.add('selected');
+                document.getElementById('gameStatus').textContent = "Cell selected - Enter a number";
+            } else {
+                selectedCell = null;
+                document.getElementById('gameStatus').textContent = "Cannot change given numbers";
+            }
+        }
+
+        // Input number
+        function inputNumber(number) {
+            if (selectedCell === null) {
+                document.getElementById('gameStatus').textContent = "Please select a cell first";
+                return;
+            }
+
+            const row = Math.floor(selectedCell / 9);
+            const col = selectedCell % 9;
+
+            // Check if the move is valid
+            if (isValidMove(row, col, number)) {
+                userInput[row][col] = number;
+                updateBoard();
+                document.getElementById('gameStatus').textContent = "Good move! ✓";
+                
+                // Check if puzzle is complete
+                if (isPuzzleComplete()) {
+                    endGame(true);
+                }
+            } else {
+                document.getElementById('gameStatus').textContent = "❌ Invalid move! Check row, column, and box";
+                // Show error temporarily
+                const cell = document.querySelector(`[data-index="${selectedCell}"]`);
+                cell.classList.add('error');
+                setTimeout(() => cell.classList.remove('error'), 1000);
+            }
+        }
+
+        // Clear cell
+        function clearCell() {
+            if (selectedCell === null) {
+                document.getElementById('gameStatus').textContent = "Please select a cell first";
+                return;
+            }
+
+            const row = Math.floor(selectedCell / 9);
+            const col = selectedCell % 9;
+            
+            userInput[row][col] = 0;
+            updateBoard();
+            document.getElementById('gameStatus').textContent = "Cell cleared";
+        }
+
+        // Check if move is valid
+        function isValidMove(row, col, number) {
+            // Check row
+            for (let i = 0; i < 9; i++) {
+                if ((userInput[row][i] === number || currentPuzzle[row][i] === number) && i !== col) {
+                    return false;
+                }
+            }
+            
+            // Check column
+            for (let i = 0; i < 9; i++) {
+                if ((userInput[i][col] === number || currentPuzzle[i][col] === number) && i !== row) {
+                    return false;
+                }
+            }
+            
+            // Check 3x3 box
+            const boxRow = Math.floor(row / 3) * 3;
+            const boxCol = Math.floor(col / 3) * 3;
+            for (let i = boxRow; i < boxRow + 3; i++) {
+                for (let j = boxCol; j < boxCol + 3; j++) {
+                    if ((userInput[i][j] === number || currentPuzzle[i][j] === number) && !(i === row && j === col)) {
+                        return false;
+                    }
+                }
+            }
+            
+            return true;
+        }
+
+        // Update board display
+        function updateBoard() {
+            for (let i = 0; i < 81; i++) {
+                const row = Math.floor(i / 9);
+                const col = i % 9;
+                const cell = document.querySelector(`[data-index="${i}"]`);
+                const givenValue = currentPuzzle[row][col];
+                const userValue = userInput[row][col];
+                
+                cell.textContent = givenValue || userValue || '';
+                cell.className = 'sudoku-cell';
+                
+                if (givenValue) {
+                    cell.classList.add('given');
+                } else if (userValue) {
+                    cell.classList.add('user-input');
+                }
+                
+                if (i === selectedCell) {
+                    cell.classList.add('selected');
+                }
+            }
+        }
+
+        // Start new game
+        function newGame() {
+            generatePuzzle();
+            selectedCell = null;
+            hintsRemaining = 3;
+            document.getElementById('hintsCount').textContent = hintsRemaining;
+            document.getElementById('gameStatus').textContent = "New game started! Select a cell";
+            startTimer();
+        }
+
+        // Generate puzzle based on difficulty
+        function generatePuzzle() {
+            // Sample puzzles for each difficulty
+            const puzzles = {
+                easy: [
+                    [5, 3, 0, 0, 7, 0, 0, 0, 0],
+                    [6, 0, 0, 1, 9, 5, 0, 0, 0],
+                    [0, 9, 8, 0, 0, 0, 0, 6, 0],
+                    [8, 0, 0, 0, 6, 0, 0, 0, 3],
+                    [4, 0, 0, 8, 0, 3, 0, 0, 1],
+                    [7, 0, 0, 0, 2, 0, 0, 0, 6],
+                    [0, 6, 0, 0, 0, 0, 2, 8, 0],
+                    [0, 0, 0, 4, 1, 9, 0, 0, 5],
+                    [0, 0, 0, 0, 8, 0, 0, 7, 9]
+                ],
+                medium: [
+                    [0, 0, 0, 6, 0, 0, 4, 0, 0],
+                    [7, 0, 0, 0, 0, 3, 6, 0, 0],
+                    [0, 0, 0, 0, 9, 1, 0, 8, 0],
+                    [0, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 5, 0, 1, 8, 0, 0, 0, 3],
+                    [0, 0, 0, 3, 0, 6, 0, 4, 5],
+                    [0, 4, 0, 2, 0, 0, 0, 6, 0],
+                    [9, 0, 3, 0, 0, 0, 0, 0, 0],
+                    [0, 2, 0, 0, 0, 0, 1, 0, 0]
+                ],
+                hard: [
+                    [8, 0, 0, 0, 0, 0, 0, 0, 0],
+                    [0, 0, 3, 6, 0, 0, 0, 0, 0],
+                    [0, 7, 0, 0, 9, 0, 2, 0, 0],
+                    [0, 5, 0, 0, 0, 7, 0, 0, 0],
+                    [0, 0, 0, 0, 4, 5, 7, 0, 0],
+                    [0, 0, 0, 1, 0, 0, 0, 3, 0],
+                    [0, 0, 1, 0, 0, 0, 0, 6, 8],
+                    [0, 0, 8, 5, 0, 0, 0, 1, 0],
+                    [0, 9, 0, 0, 0, 0, 4, 0, 0]
+                ]
+            };
+
+            currentPuzzle = JSON.parse(JSON.stringify(puzzles[currentDifficulty]));
+            solution = solveSudoku(JSON.parse(JSON.stringify(currentPuzzle)));
+            userInput = Array(9).fill().map(() => Array(9).fill(0));
+            updateBoard();
+        }
+
+        // Set difficulty
+        function setDifficulty(difficulty) {
+            currentDifficulty = difficulty;
+            document.querySelectorAll('.btn-difficulty').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            newGame();
+        }
+
+        // Get hint
+        function getHint() {
+            if (hintsRemaining <= 0) {
+                document.getElementById('gameStatus').textContent = "❌ No hints remaining!";
+                return;
+            }
+
+            if (selectedCell === null) {
+                document.getElementById('gameStatus').textContent = "⚠️ Select a cell for hint";
+                return;
+            }
+
+            const row = Math.floor(selectedCell / 9);
+            const col = selectedCell % 9;
+            
+            if (currentPuzzle[row][col] !== 0) {
+                document.getElementById('gameStatus').textContent = "❌ Cannot hint on given numbers";
+                return;
+            }
+
+            userInput[row][col] = solution[row][col];
+            hintsRemaining--;
+            document.getElementById('hintsCount').textContent = hintsRemaining;
+            updateBoard();
+            document.getElementById('gameStatus').textContent = "💡 Hint applied!";
+            
+            if (isPuzzleComplete()) {
+                endGame(true);
+            }
+        }
+
+        // Check if puzzle is complete
+        function isPuzzleComplete() {
+            for (let i = 0; i < 9; i++) {
+                for (let j = 0; j < 9; j++) {
+                    if (!currentPuzzle[i][j] && !userInput[i][j]) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        // Check solution
+        function checkSolution() {
+            let errors = 0;
+            for (let i = 0; i < 9; i++) {
+                for (let j = 0; j < 9; j++) {
+                    if (userInput[i][j] && userInput[i][j] !== solution[i][j]) {
+                        errors++;
+                    }
+                }
+            }
+
+            if (errors === 0 && isPuzzleComplete()) {
+                endGame(true);
+            } else if (errors === 0) {
+                document.getElementById('gameStatus').textContent = "✅ All entries correct so far!";
+            } else {
+                document.getElementById('gameStatus').textContent = `❌ ${errors} error(s) found!`;
+            }
+        }
+
+        // Solve puzzle (show solution)
+        function solvePuzzle() {
+            if (confirm('This will reveal the solution. Continue?')) {
+                for (let i = 0; i < 9; i++) {
+                    for (let j = 0; j < 9; j++) {
+                        if (!currentPuzzle[i][j]) {
+                            userInput[i][j] = solution[i][j];
+                        }
+                    }
+                }
+                updateBoard();
+                stopTimer();
+                document.getElementById('gameStatus').textContent = "✅ Puzzle solved!";
+            }
+        }
+
+        // Sudoku solver algorithm (backtracking)
+        function solveSudoku(board) {
+            const solvedBoard = JSON.parse(JSON.stringify(board));
+            
+            function solve() {
+                for (let row = 0; row < 9; row++) {
+                    for (let col = 0; col < 9; col++) {
+                        if (solvedBoard[row][col] === 0) {
+                            for (let num = 1; num <= 9; num++) {
+                                if (isValidSolution(row, col, num, solvedBoard)) {
+                                    solvedBoard[row][col] = num;
+                                    if (solve()) {
+                                        return true;
+                                    }
+                                    solvedBoard[row][col] = 0;
+                                }
+                            }
+                            return false;
+                        }
+                    }
+                }
+                return true;
+            }
+
+            solve();
+            return solvedBoard;
+        }
+
+        // Check if number is valid in solution
+        function isValidSolution(row, col, num, board) {
+            // Check row
+            for (let i = 0; i < 9; i++) {
+                if (board[row][i] === num && i !== col) return false;
+            }
+            
+            // Check column
+            for (let i = 0; i < 9; i++) {
+                if (board[i][col] === num && i !== row) return false;
+            }
+            
+            // Check 3x3 box
+            const boxRow = Math.floor(row / 3) * 3;
+            const boxCol = Math.floor(col / 3) * 3;
+            for (let i = boxRow; i < boxRow + 3; i++) {
+                for (let j = boxCol; j < boxCol + 3; j++) {
+                    if (board[i][j] === num && !(i === row && j === col)) return false;
+                }
+            }
+            
+            return true;
+        }
+
+        // Timer functions
+        function startTimer() {
+            stopTimer();
+            startTime = Date.now();
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        function updateTimer() {
+            if (!startTime) return;
+            
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = elapsed % 60;
+            
+            document.getElementById('timer').textContent = 
+                `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        }
+
+        // End game
+        function endGame(won) {
+            stopTimer();
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const minutes = Math.floor(elapsed / 60);
+            const seconds = elapsed % 60;
+            
+            if (won) {
+                document.getElementById('gameStatus').innerHTML = 
+                    `🎉 Congratulations! Puzzle solved in ${minutes}m ${seconds}s!`;
+                
+                // Show celebration
+                setTimeout(() => {
+                    alert(`🎉 Well done! You completed the ${currentDifficulty} puzzle in ${minutes} minutes and ${seconds} seconds!`);
+                }, 500);
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', function(e) {
+            if (e.key >= '1' && e.key <= '9') {
+                inputNumber(parseInt(e.key));
+            } else if (e.key === 'Backspace' || e.key === 'Delete') {
+                clearCell();
+            }
+        });
+    </script>
+</body>
+</html>

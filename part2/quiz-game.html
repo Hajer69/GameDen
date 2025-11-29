@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Play Brain Quiz - Test your knowledge with interactive quizzes">
+    <title>Brain Quiz - GameDen</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom theme colors -->
+    <style>
+        :root {
+            --primary-blue: #203079;
+            --primary-purple: #7C4DFF;
+            --accent-orange: #FFB300;
+        }
+        .bg-primary-custom {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
+        }
+        .btn-primary-custom {
+            background-color: var(--accent-orange) !important;
+            border-color: var(--accent-orange) !important;
+        }
+        .btn-purple {
+            background-color: var(--primary-purple) !important;
+            border-color: var(--primary-purple) !important;
+            color: white !important;
+        }
+        .text-primary-custom {
+            color: var(--primary-blue) !important;
+        }
+        #logo-icon {
+           width: 40px; 
+           height: 40px;
+        }
+        
+        /* Quiz Styles - Consistent with other games */
+        .game-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .game-info {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .score-board {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .score-item {
+            padding: 15px 25px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            min-width: 120px;
+        }
+        .score-item.active {
+            background: var(--primary-purple);
+            color: white;
+        }
+        .quiz-screen {
+            display: none;
+        }
+        .question-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+            border-left: 5px solid var(--primary-purple);
+        }
+        .option-btn {
+            width: 100%;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border: 2px solid var(--primary-purple);
+            border-radius: 8px;
+            background: white;
+            color: var(--primary-blue);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            font-weight: 500;
+        }
+        .option-btn:hover {
+            background: var(--primary-purple);
+            color: white;
+            transform: translateX(10px);
+        }
+        .option-btn.correct {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+        }
+        .option-btn.wrong {
+            background: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-orange);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-game {
+            background: var(--accent-orange);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .btn-game:hover {
+            background: #e6a100;
+            color: white;
+        }
+        .difficulty-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .btn-difficulty {
+            padding: 10px 20px;
+            border: 2px solid var(--primary-purple);
+            background: white;
+            color: var(--primary-purple);
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+        .btn-difficulty.active {
+            background: var(--primary-purple);
+            color: white;
+        }
+        .btn-difficulty:hover {
+            transform: translateY(-2px);
+        }
+        .game-status {
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            min-height: 40px;
+            color: var(--primary-blue);
+        }
+        .category-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .btn-category {
+            padding: 12px 24px;
+            border: 2px solid var(--primary-blue);
+            background: white;
+            color: var(--primary-blue);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .btn-category.active {
+            background: var(--primary-blue);
+            color: white;
+        }
+        .results-stats {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="bg-light">
+    <!-- Bootstrap Navigation Bar - Same as other pages -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
+                <img id="logo-icon" src="images/logo.png" alt="GameDen Logo" class="me-2">
+                GameDen
+            </a>
+            
+            <div class="navbar navbar-expand-sm" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="games.html">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Game Content - Consistent structure with other games -->
+    <section class="py-5 mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Header - Same style as other games -->
+                    <div class="text-center mb-4">
+                        <h1 class="display-5 fw-bold text-primary-custom mb-3">Brain Quiz</h1>
+                        <p class="text-muted">Test your knowledge with interactive quizzes across multiple categories</p>
+                    </div>
+
+                    <!-- Start Screen -->
+                    <div id="startScreen">
+                        <!-- Game Info Card - Same style as other games -->
+                        <div class="game-info text-center">
+                            <div class="score-board">
+                                <div class="score-item">
+                                    <div>Categories</div>
+                                    <div class="h4 mb-0">5+</div>
+                                </div>
+                                <div class="score-item">
+                                    <div>Questions</div>
+                                    <div class="h4 mb-0">50+</div>
+                                </div>
+                                <div class="score-item">
+                                    <div>Difficulty</div>
+                                    <div class="h4 mb-0">3 Levels</div>
+                                </div>
+                            </div>
+                            
+                            <div class="game-status">
+                                Choose your quiz settings to start!
+                            </div>
+                        </div>
+
+                        <!-- Quiz Setup - Similar to other games' setup -->
+                        <div class="card shadow-sm border-0 mb-4">
+                            <div class="card-header bg-primary-custom text-white">
+                                <h5 class="mb-0">⚙️ Quiz Settings</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold">🎯 Category:</label>
+                                    <div class="category-buttons">
+                                        <button class="btn-category active" onclick="setCategory('general')">General</button>
+                                        <button class="btn-category" onclick="setCategory('science')">Science</button>
+                                        <button class="btn-category" onclick="setCategory('history')">History</button>
+                                        <button class="btn-category" onclick="setCategory('geography')">Geography</button>
+                                        <button class="btn-category" onclick="setCategory('math')">Math</button>
+                                    </div>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label fw-bold">📊 Difficulty Level:</label>
+                                    <div class="difficulty-buttons">
+                                        <button class="btn-difficulty active" onclick="setDifficulty('easy')">Easy</button>
+                                        <button class="btn-difficulty" onclick="setDifficulty('medium')">Medium</button>
+                                        <button class="btn-difficulty" onclick="setDifficulty('hard')">Hard</button>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="playerName" class="form-label fw-bold">👤 Your Name:</label>
+                                        <input type="text" class="form-control" id="playerName" placeholder="Enter your name" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="questionCount" class="form-label fw-bold">❓ Questions:</label>
+                                        <select class="form-select" id="questionCount">
+                                            <option value="5">5 Questions</option>
+                                            <option value="10" selected>10 Questions</option>
+                                            <option value="15">15 Questions</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" id="enableTimer" checked>
+                                        <label class="form-check-label fw-bold" for="enableTimer">⏱️ Enable Timer (30s per question)</label>
+                                    </div>
+                                </div>
+
+                                <button class="btn btn-game btn-lg w-100" onclick="startQuiz()">
+                                    🚀 Start Quiz
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Game Screen -->
+                    <div id="gameScreen" class="quiz-screen">
+                        <div class="quiz-header">
+                            <div>
+                                <span class="fw-bold">Player: </span>
+                                <span id="playerNameDisplay">-</span>
+                            </div>
+                            <div>
+                                <span class="fw-bold">⏱️ Time: </span>
+                                <span id="timerDisplay">30s</span>
+                            </div>
+                            <div>
+                                <span class="fw-bold">🏆 Score: </span>
+                                <span id="scoreDisplay">0</span>
+                            </div>
+                            <div>
+                                <span class="fw-bold">📊 </span>
+                                <span id="progressDisplay">1/10</span>
+                            </div>
+                        </div>
+
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressBar" style="width: 10%;"></div>
+                        </div>
+
+                        <div class="question-card">
+                            <h3 id="questionText" class="mb-4">What is the capital of France?</h3>
+                            <div class="options-container">
+                                <!-- Options will be loaded dynamically -->
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button class="btn btn-outline-secondary" onclick="nextQuestion()" id="nextBtn" style="display: none;">
+                                Next Question →
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Results Screen -->
+                    <div id="resultsScreen" class="quiz-screen">
+                        <div class="results-stats text-center">
+                            <h2 class="display-6 fw-bold text-primary-custom mb-4">🎉 Quiz Completed!</h2>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-4">
+                                    <div class="h1 text-success" id="finalScore">0</div>
+                                    <div class="text-muted">Final Score</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="h1 text-primary" id="correctAnswers">0</div>
+                                    <div class="text-muted">Correct Answers</div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="h1 text-warning" id="timeTaken">0s</div>
+                                    <div class="text-muted">Time Taken</div>
+                                </div>
+                            </div>
+
+                            <div class="performance-rating mb-4">
+                                <h4 id="performanceText" class="text-primary-custom">Performance Rating</h4>
+                                <div class="h3" id="performanceStars">⭐⭐⭐⭐⭐</div>
+                            </div>
+
+                            <div class="controls">
+                                <button class="btn btn-game btn-lg me-2" onclick="restartQuiz()">
+                                    🔄 Play Again
+                                </button>
+                                <button class="btn btn-outline-primary btn-lg me-2" onclick="showStartScreen()">
+                                    ⚙️ New Quiz
+                                </button>
+                                <a href="games.html" class="btn btn-outline-secondary btn-lg">
+                                    ← All Games
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer - Same as other pages -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 GameDen. Student Project.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Game state variables
+        let currentQuestion = 0;
+        let score = 0;
+        let timer;
+        let timeLeft = 30;
+        let startTime;
+        let questions = [];
+        let playerName = "";
+        let currentCategory = "general";
+        let currentDifficulty = "easy";
+
+        // Question database
+        const questionDatabase = {
+            general: [
+                {
+                    question: "What is the capital of France?",
+                    options: ["Paris", "London", "Berlin", "Madrid"],
+                    correct: 0,
+                    difficulty: "easy"
+                },
+                {
+                    question: "Which planet is known as the Red Planet?",
+                    options: ["Venus", "Mars", "Jupiter", "Saturn"],
+                    correct: 1,
+                    difficulty: "easy"
+                },
+                {
+                    question: "What is the largest ocean on Earth?",
+                    options: ["Atlantic", "Indian", "Arctic", "Pacific"],
+                    correct: 3,
+                    difficulty: "easy"
+                }
+            ],
+            science: [
+                {
+                    question: "What is H2O commonly known as?",
+                    options: ["Oxygen", "Hydrogen", "Water", "Carbon Dioxide"],
+                    correct: 2,
+                    difficulty: "easy"
+                },
+                {
+                    question: "What is the chemical symbol for gold?",
+                    options: ["Go", "Gd", "Au", "Ag"],
+                    correct: 2,
+                    difficulty: "medium"
+                }
+            ],
+            history: [
+                {
+                    question: "In which year did World War II end?",
+                    options: ["1944", "1945", "1946", "1947"],
+                    correct: 1,
+                    difficulty: "medium"
+                }
+            ],
+            geography: [
+                {
+                    question: "Which country has the largest population?",
+                    options: ["India", "United States", "China", "Russia"],
+                    correct: 2,
+                    difficulty: "easy"
+                }
+            ],
+            math: [
+                {
+                    question: "What is 15 × 15?",
+                    options: ["225", "250", "275", "200"],
+                    correct: 0,
+                    difficulty: "easy"
+                }
+            ]
+        };
+
+        function setCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.btn-category').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.btn-category[onclick="setCategory('${category}')"]`).classList.add('active');
+        }
+
+        function setDifficulty(difficulty) {
+            currentDifficulty = difficulty;
+            document.querySelectorAll('.btn-difficulty').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.btn-difficulty[onclick="setDifficulty('${difficulty}')"]`).classList.add('active');
+        }
+
+        function startQuiz() {
+            playerName = document.getElementById('playerName').value;
+            const questionCount = parseInt(document.getElementById('questionCount').value);
+            const enableTimer = document.getElementById('enableTimer').checked;
+
+            if (!playerName) {
+                alert("Please enter your name!");
+                return;
+            }
+
+            // Filter questions based on difficulty and category
+            questions = questionDatabase[currentCategory]
+                .filter(q => q.difficulty === currentDifficulty)
+                .slice(0, questionCount);
+
+            if (questions.length === 0) {
+                alert("No questions available for selected settings!");
+                return;
+            }
+
+            // Initialize game state
+            currentQuestion = 0;
+            score = 0;
+            startTime = new Date();
+            
+            // Show game screen
+            document.getElementById('startScreen').style.display = 'none';
+            document.getElementById('gameScreen').style.display = 'block';
+            document.getElementById('playerNameDisplay').textContent = playerName;
+            
+            // Load first question
+            loadQuestion();
+            
+            // Start timer if enabled
+            if (enableTimer) {
+                startTimer();
+            }
+        }
+
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                endQuiz();
+                return;
+            }
+
+            const question = questions[currentQuestion];
+            document.getElementById('questionText').textContent = question.question;
+            
+            const optionsContainer = document.querySelector('.options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.className = 'option-btn';
+                button.textContent = option;
+                button.onclick = () => selectAnswer(index);
+                optionsContainer.appendChild(button);
+            });
+
+            // Update progress
+            document.getElementById('progressDisplay').textContent = 
+                `${currentQuestion + 1}/${questions.length}`;
+            document.getElementById('progressBar').style.width = 
+                `${((currentQuestion + 1) / questions.length) * 100}%`;
+
+            // Reset next button
+            document.getElementById('nextBtn').style.display = 'none';
+            
+            // Reset timer
+            if (document.getElementById('enableTimer').checked) {
+                resetTimer();
+            }
+        }
+
+        function selectAnswer(selectedIndex) {
+            const question = questions[currentQuestion];
+            const options = document.querySelectorAll('.option-btn');
+            
+            // Disable all buttons
+            options.forEach(btn => btn.disabled = true);
+            
+            // Show correct/wrong answers
+            options.forEach((btn, index) => {
+                if (index === question.correct) {
+                    btn.classList.add('correct');
+                } else if (index === selectedIndex && index !== question.correct) {
+                    btn.classList.add('wrong');
+                }
+            });
+
+            // Update score
+            if (selectedIndex === question.correct) {
+                score++;
+                document.getElementById('scoreDisplay').textContent = score;
+            }
+
+            // Show next button
+            document.getElementById('nextBtn').style.display = 'inline-block';
+            
+            // Stop timer
+            clearInterval(timer);
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+
+        function startTimer() {
+            timeLeft = 30;
+            document.getElementById('timerDisplay').textContent = timeLeft + 's';
+            
+            timer = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timerDisplay').textContent = timeLeft + 's';
+                
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    selectAnswer(-1); // Auto-select wrong answer
+                }
+            }, 1000);
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            if (document.getElementById('enableTimer').checked) {
+                startTimer();
+            }
+        }
+
+        function endQuiz() {
+            const endTime = new Date();
+            const timeTaken = Math.floor((endTime - startTime) / 1000);
+            
+            // Calculate performance
+            const percentage = (score / questions.length) * 100;
+            let performanceText = "";
+            let stars = "";
+            
+            if (percentage >= 80) {
+                performanceText = "Excellent! 🎉";
+                stars = "⭐⭐⭐⭐⭐";
+            } else if (percentage >= 60) {
+                performanceText = "Good Job! 👍";
+                stars = "⭐⭐⭐⭐";
+            } else if (percentage >= 40) {
+                performanceText = "Not Bad! 😊";
+                stars = "⭐⭐⭐";
+            } else {
+                performanceText = "Keep Practicing! 💪";
+                stars = "⭐⭐";
+            }
+
+            // Update results screen
+            document.getElementById('finalScore').textContent = score + "/" + questions.length;
+            document.getElementById('correctAnswers').textContent = score;
+            document.getElementById('timeTaken').textContent = timeTaken + "s";
+            document.getElementById('performanceText').textContent = performanceText;
+            document.getElementById('performanceStars').textContent = stars;
+
+            // Show results screen
+            document.getElementById('gameScreen').style.display = 'none';
+            document.getElementById('resultsScreen').style.display = 'block';
+        }
+
+        function restartQuiz() {
+            document.getElementById('resultsScreen').style.display = 'none';
+            document.getElementById('startScreen').style.display = 'block';
+        }
+
+        function showStartScreen() {
+            document.getElementById('resultsScreen').style.display = 'none';
+            document.getElementById('startScreen').style.display = 'block';
+        }
+
+        // Initialize default settings
+        document.addEventListener('DOMContentLoaded', function() {
+            setCategory('general');
+            setDifficulty('easy');
+        });
+    </script>
+</body>
+</html>
