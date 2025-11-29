@@ -340,7 +340,7 @@
 // =============================================
 
 // ===========================================
-// 1. TWO OBJECT TYPES (REQUIREMENT a)
+// 1. TWO OBJECT TYPES 
 // ===========================================
 function Game(name, category, difficulty, players, rating, image) {
     this.name = name;
@@ -359,7 +359,7 @@ function GameCategory(category, gameCount, description, skills) {
 }
 
 // ===========================================
-// 2. ARRAYS WITH ACTUAL DATA (REQUIREMENT b)
+// 2. ARRAYS WITH ACTUAL DATA 
 // ===========================================
 let games = [
     new Game("Rock Paper Scissors", "Strategy", "Easy", "1-2 Players", 4.5, "images/rps.jpg"),
@@ -375,7 +375,7 @@ let gameCategories = [
 ];
 
 // ===========================================
-// 3. FIRST FUNCTION - Display Games Table (REQUIREMENT d)
+// 3. FIRST FUNCTION - Display Games Table 
 // ===========================================
 function displayGamesTable() {
     const tableBody = document.getElementById('gamesTableBody');
@@ -415,7 +415,7 @@ function displayGamesTable() {
 }
 
 // =========$==================================
-// 4. SECOND FUNCTION - Display Categories Table (REQUIREMENT d)
+// 4. SECOND FUNCTION - Display Categories Table 
 // ===========================================
 function displayCategoriesTable() {
     const tableBody = document.getElementById('categoriesTableBody');
@@ -450,7 +450,7 @@ function displayCategoriesTable() {
 }
 
 // ===========================================
-// 5. ADD NEW GAME (REQUIREMENT e-i)
+// 5. ADD NEW GAME 
 // ===========================================
 function addNewGame(event) {
     event.preventDefault(); // Prevent form submission
@@ -497,7 +497,7 @@ function addNewGame(event) {
 }
 
 // ===========================================
-// 6. ADD NEW CATEGORY (REQUIREMENT e-i)
+// 6. ADD NEW CATEGORY 
 // ===========================================
 function addNewCategory(event) {
     event.preventDefault(); // Prevent form submission
@@ -540,7 +540,7 @@ function addNewCategory(event) {
 }
 
 // ===========================================
-// 7. SEARCH GAMES (REQUIREMENT e-ii)
+// 7. SEARCH GAMES 
 // ===========================================
 function searchGames() {
     const searchTerm = document.getElementById('gameSearchInput').value.trim().toLowerCase();
@@ -589,7 +589,7 @@ function searchGames() {
 }
 
 // ===========================================
-// 8. SEARCH CATEGORIES (REQUIREMENT e-ii)
+// 8. SEARCH CATEGORIES 
 // ===========================================
 function searchCategories() {
     const searchTerm = document.getElementById('categorySearchInput').value.trim().toLowerCase();
