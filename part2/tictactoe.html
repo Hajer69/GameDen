@@ -20,12 +20,8 @@
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
         }
         .btn-primary-custom {
-            background-color: #FFB300;
-            color: white !important;
-        }
-        .btn-primary-custom:hover {
-            background-color: #d4980c;
-            color: white !important;
+            background-color: var(--accent-orange) !important;
+            border-color: var(--accent-orange) !important;
         }
         .btn-purple {
             background-color: var(--primary-purple) !important;
@@ -75,19 +71,19 @@
             padding: 1rem;
             text-align: left;
         }
-        #btn {
-            background:#FFB300;
+        .btn-game {
+            background: #FFB300;
             color: white;
             padding: 0.8rem 2rem;
             border: none;
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            width: 100%;
         }
 
-        #btn:hover {
+        .btn-game:hover {
             background: #c18a09;
+            color: white;
         }
     </style>
 </head>
@@ -139,7 +135,7 @@
                     <div class="d-flex flex-wrap gap-2 mb-4">
                         <button type="button" class="btn btn-outline-info">Strategy</button>
                         <button type="button" class="btn btn-outline-warning">Easy</button>
-                        <button type="button" class="btn btn-outline-success">2 Player</button>
+                        <button type="button" class="btn btn-outline-success">1 Player</button>
                     </div>
                 </div>
             </div>
@@ -159,15 +155,15 @@
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">Players</td>
-                                    <td>2 players (X and O)</td>
+                                    <td>1 player vs Computer or 2 players</td>
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">Skills Developed</td>
                                     <td>Strategic thinking, Pattern recognition, Planning</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">Game Board</td>
-                                    <td>3x3 grid</td>
+                                    <td class="fw-bold">Game Features</td>
+                                    <td>3 Difficulty levels, Score tracking, Smart AI</td>
                                 </tr>
                                 <tr>
                                     <td class="fw-bold">Average Game Time</td>
@@ -179,36 +175,40 @@
                 </div>
             </div>
 
-            <!-- Strategy Tips Table -->
+            <!-- Difficulty Levels Table -->
             <div class="card shadow-sm border-0 mb-4">
                 <div class="card-header bg-primary-custom text-white">
-                    <h3 class="h4 mb-0">Strategy Tips</h3>
+                    <h3 class="h4 mb-0">Difficulty Levels</h3>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead class="table">
                                 <tr>
-                                    <th>Strategy Level</th>
-                                    <th>Tips</th>
                                     <th>Difficulty</th>
+                                    <th>Computer Strategy</th>
+                                    <th>Win Rate</th>
+                                    <th>Challenge Level</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Beginner</td>
-                                    <td>Try to get three in a row, block opponent</td>
                                     <td>Easy</td>
+                                    <td>Random moves</td>
+                                    <td>20% chance</td>
+                                    <td>Beginner</td>
                                 </tr>
                                 <tr>
-                                    <td>Intermediate</td>
-                                    <td>Create forks (two ways to win), control center</td>
                                     <td>Medium</td>
+                                    <td>Basic defense and offense</td>
+                                    <td>50% chance</td>
+                                    <td>Intermediate</td>
                                 </tr>
                                 <tr>
-                                    <td>Expert</td>
-                                    <td>Force opponent moves, set up multiple threats</td>
                                     <td>Hard</td>
+                                    <td>Advanced minimax algorithm</td>
+                                    <td>90% chance</td>
+                                    <td>Expert</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -221,17 +221,24 @@
                 <div class="card-body">
                     <h3 class="h4 fw-bold text-primary-custom mb-3">Features</h3>
                     <ul class="goals-list">
-                        <li class="mb-2">Play against friend or computer AI</li>
-                        <li class="mb-2">Multiple difficulty levels</li>
-                        <li class="mb-2">Win/loss statistics tracking</li>
-                        <li class="mb-0">Learn advanced strategies</li>
+                        <li class="mb-2">3 difficulty levels (Easy, Medium, Hard)</li>
+                        <li class="mb-2">Smart computer AI with different strategies</li>
+                        <li class="mb-2">Real-time score tracking and statistics</li>
+                        <li class="mb-2">Interactive 3x3 game board</li>
+                        <li class="mb-2">Win/loss/draw counters</li>
+                        <li class="mb-0">Visual highlighting for winning combinations</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Action Buttons -->
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <a href="#" class="btn btn-primary-custom btn-lg px-4 me-md-2 text-white">Play Game (Coming Soon)</a>
+                <a href="tictactoe-game.html" class="btn btn-game btn-lg px-4 me-md-2">
+                    🎮 Play Tic Tac Toe
+                </a>
+                <a href="games.html" class="btn btn-outline-primary btn-lg px-4">
+                    ← Back to Games
+                </a>
             </div>
         </div>
     </section>
@@ -242,7 +249,5 @@
             <p class="mb-0">&copy; 2025 GameDen. All rights reserved.</p>
         </div>
     </footer>
-
-    
 </body>
 </html>
