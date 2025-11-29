@@ -20,12 +20,8 @@
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
         }
         .btn-primary-custom {
-            background-color: #FFB300;
-            color: white !important;
-        }
-        .btn-primary-custom:hover {
-            background-color: #d4980c;
-            color: white !important;
+            background-color: var(--accent-orange) !important;
+            border-color: var(--accent-orange) !important;
         }
         .btn-purple {
             background-color: var(--primary-purple) !important;
@@ -69,7 +65,25 @@
             padding: 1rem;
             text-align: left;
         }
-        
+        .table th{
+            background: #FFB300;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+        .btn-game {
+            background: #FFB300;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .btn-game:hover {
+            background: #c18a09;
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -115,11 +129,11 @@
                 <!-- Game Info -->
                 <div class="col-lg-8">
                     <h1 class="display-5 fw-bold text-primary-custom mb-3">Rock Paper Scissors</h1>
-                    <p class="text-muted mb-4">A classic hand game that tests your prediction skills and strategy against the computer.</p>
+                    <p class="lead text-muted mb-4">A classic hand game that tests your prediction skills and strategy against the computer.</p>
                     
                     <div class="d-flex flex-wrap gap-2 mb-4">
                         <button type="button" class="btn btn-outline-info">Strategy</button>
-                        <button type="button" class="btn btn-outline-warning">Strategy</button>
+                        <button type="button" class="btn btn-outline-warning">Easy</button>
                         <button type="button" class="btn btn-outline-success">1 Player</button>
                     </div>
                 </div>
@@ -128,7 +142,7 @@
             <!-- Game Rules Table -->
             <div class="card shadow-sm border-0 mb-4">
                 <div class="card-header bg-purple text-white">
-                    <h3 class="h4 mb-0">Game Rules</h3>
+                    <h3 class="h4 mb-0">Game Rules & Information</h3>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -143,12 +157,57 @@
                                     <td>Rock beats Scissors, Scissors beat Paper, Paper beats Rock</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">Skills You Learn</td>
-                                    <td>Thinking ahead, guessing patterns, quick decisions</td>
+                                    <td class="fw-bold">Skills Developed</td>
+                                    <td>Strategic thinking, Pattern recognition, Quick decision making</td>
                                 </tr>
                                 <tr>
-                                    <td class="fw-bold">Game Time</td>
+                                    <td class="fw-bold">Game Features</td>
+                                    <td>3 Difficulty levels, Score tracking, Countdown animation</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Average Game Time</td>
                                     <td>2-5 minutes per game</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Difficulty Levels Table -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-primary-custom text-white">
+                    <h3 class="h4 mb-0">Difficulty Levels</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table">
+                                <tr>
+                                    <th>Difficulty</th>
+                                    <th>Computer Strategy</th>
+                                    <th>Win Rate</th>
+                                    <th>Challenge Level</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Easy</td>
+                                    <td>Random choices</td>
+                                    <td>33% chance</td>
+                                    <td>Beginner</td>
+                                </tr>
+                                <tr>
+                                    <td>Medium</td>
+                                    <td>Basic pattern recognition</td>
+                                    <td>45% chance</td>
+                                    <td>Intermediate</td>
+                                </tr>
+                                <tr>
+                                    <td>Hard</td>
+                                    <td>Advanced strategy & prediction</td>
+                                    <td>60% chance</td>
+                                    <td>Advanced</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -159,19 +218,26 @@
             <!-- Game Features -->
             <div class="card shadow-sm border-0 mb-4">
                 <div class="card-body">
-                    <h3 class="h4 fw-bold text-primary-custom mb-3">What You Get</h3>
+                    <h3 class="h4 fw-bold text-primary-custom mb-3">Features</h3>
                     <ul class="goals-list">
-                        <li class="mb-2">Play against computer</li>
-                        <li class="mb-2">See your wins and losses</li>
-                        <li class="mb-2">Different difficulty levels</li>
-                        <li class="mb-0">Learn how to predict moves</li>
+                        <li class="mb-2">3 difficulty levels (Easy, Medium, Hard)</li>
+                        <li class="mb-2">Countdown animation before each round</li>
+                        <li class="mb-2">Real-time score tracking</li>
+                        <li class="mb-2">Smart computer AI with different strategies</li>
+                        <li class="mb-2">Visual feedback for wins, losses, and draws</li>
+                        <li class="mb-0">Interactive and engaging user interface</li>
                     </ul>
                 </div>
             </div>
 
             <!-- Action Buttons -->
             <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                <a href="#" class="btn btn-primary-custom btn-lg px-4 me-md-2 text-white">Play Game</a>
+                <a href="rps-game.html" class="btn btn-game btn-lg px-4 me-md-2">
+                    🎮 Play Rock Paper Scissors
+                </a>
+                <a href="games.html" class="btn btn-outline-primary btn-lg px-4">
+                    ← Back to Games
+                </a>
             </div>
         </div>
     </section>
@@ -179,11 +245,8 @@
     <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container text-center">
-            <p class="mb-0">&copy; 2025 GameDen. All rights reserved.</p>
+            <p class="mb-0">&copy; 2025 GameDen. Student Project.</p>
         </div>
     </footer>
-
-
-   
 </body>
 </html>
