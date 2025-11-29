@@ -5,251 +5,184 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Have fun with GameDen, Play interactive online games! Challenge yourself with Sudoku, Rock Paper Scissors, and many more games.">
     <title>Rock Paper Scissors - GameDen</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+     <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- Custom theme colors -->
     <style>
-        .game-detail {
-            min-height: 100vh;
-            padding: 100px 0 50px;
+        :root {
+            --primary-blue: #203079;
+            --primary-purple: #7C4DFF;
+            --accent-orange: #FFB300;
         }
-
-        .game-header {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 2rem;
-            margin-bottom: 2rem;
-            align-items: start;
+        .bg-primary-custom {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
         }
-
+        .btn-primary-custom {
+            background-color: #FFB300;
+            color: white !important;
+        }
+        .btn-primary-custom:hover {
+            background-color: #d4980c;
+            color: white !important;
+        }
+        .btn-purple {
+            background-color: var(--primary-purple) !important;
+            border-color: var(--primary-purple) !important;
+            color: white !important;
+        }
+        .text-primary-custom {
+            color: var(--primary-blue) !important;
+        }
         .game-detail-image {
             width: 100%;
-            height: 500px;
+            height: 300px;
+            object-fit: cover;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-
-        .game-info h1 {
-            font-size: 2.2rem;
-            color: #cbd3f4;
-            margin-bottom: 1rem;
-        }
-
-        .game-description {
-            font-size: 1.1rem;
-            color: #c9ced6;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-
-        .game-meta {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .game-category, .game-difficulty, .game-players {
-            background: #f8f9fa;
-            padding: 0.4rem 0.8rem;
-            border-radius: 15px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-
-        .game-category {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-
-        .game-difficulty {
-            background: #fff3e0;
-            color: #f57c00;
-        }
-
-        .game-players {
-            background: #e8f5e8;
-            color: #388e3c;
-        }
-
-        .game-rules-table {
-            background-color: #e2e8f0;
-            width: 100%;
-            border-collapse: collapse;
-            margin: 2rem 0;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-
-        .game-rules-table th {
-            background: #7C4DFF;
-            color: white;
-            padding: 1rem;
-            text-align: left;
-            font-weight: 600;
-        }
-
-        .game-rules-table td {
-            padding: 1rem;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .game-features {
-            
-            margin: 2rem 0;
-        }
-
-        .game-features h2 {
-        
-            margin-bottom: 1rem;
-            color: #d3d6e3;
-        }
-
-        .game-features ul {
-            color: #c9ced6;
+        .goals-list {
             list-style: none;
-            padding-left: 0;
+            padding: 0;
         }
 
-        .game-features li {
+        .goals-list li {
             padding: 0.5rem 0;
             padding-left: 1.5rem;
             position: relative;
         }
 
-        .game-features li:before {
+        .goals-list li:before {
             content: "✓";
             position: absolute;
             left: 0;
             color: #7C4DFF;
             font-weight: bold;
         }
-
-        .game-actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 2rem;
+        #logo-icon {
+           width: 40px; 
+           height: 40px;
         }
-
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary {
-            background: #FFB300;
+        .card-header {
+            background: #203079;
             color: white;
+            padding: 1rem;
+            text-align: left;
         }
-
-        .btn-primary:hover {
-            background: #E6A100;
-        }
-
-        .btn-secondary {
-            background: #7C4DFF;
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background: #6b3ccc;
-        }
-
-        @media (max-width: 768px) {
-            .game-header {
-                grid-template-columns: 1fr;
-            }
-            
-            .game-actions {
-                flex-direction: column;
-            }
-        }
+        
     </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="images/logo.png" alt="GameDen Logo" class="logo-image">
-                <span>GameDen</span>
+    <!-- Bootstrap Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
+                <img id="logo-icon"  src="images/logo.png" alt="GameDen Logo" class="me-2" >
+                GameDen
+            </a>
+            
+            <div class="navbar navbar-expand-sm" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="games.html">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a>
+                    </li>
+                </ul>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="games.html" class="nav-link">Games</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-                <li><a href="login.html" class="nav-link login-btn">Sign In</a></li>
-            </ul>
         </div>
     </nav>
 
-    <section class="game-detail">
+    <!-- Game Detail Content -->
+    <section class="py-5 mt-5">
         <div class="container">
-            <div class="game-header">
-                <div class="game-image">
-                    <img src="images/rps.jpg" alt="Rock Paper Scissors" class="game-detail-image">
+            <div class="row">
+                <!-- Game Image -->
+                <div class="col-lg-4 mb-4">
+                    <img src="images/rps.jpg" alt="Rock Paper Scissors" class="game-detail-image shadow">
                 </div>
-                <div class="game-info">
-                    <h1>Rock Paper Scissors</h1>
-                    <p class="game-description">A classic hand game that tests your prediction skills and strategy against the computer.</p>
-                    <div class="game-meta">
-                        <span class="game-category">Strategy</span>
-                        <span class="game-difficulty">Easy</span>
-                        <span class="game-players">1 Player</span>
+                
+                <!-- Game Info -->
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold text-primary-custom mb-3">Rock Paper Scissors</h1>
+                    <p class="text-muted mb-4">A classic hand game that tests your prediction skills and strategy against the computer.</p>
+                    
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <button type="button" class="btn btn-outline-info">Strategy</button>
+                        <button type="button" class="btn btn-outline-warning">Strategy</button>
+                        <button type="button" class="btn btn-outline-success">1 Player</button>
                     </div>
                 </div>
             </div>
 
             <!-- Game Rules Table -->
-            <table class="game-rules-table">
-                <thead>
-                    <tr>
-                        <th colspan="2">Game Rules</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>How to Play</td>
-                        <td>Choose Rock, Paper, or Scissors. The computer will also choose.</td>
-                    </tr>
-                    <tr>
-                        <td>Winning Rules</td>
-                        <td>Rock beats Scissors, Scissors beat Paper, Paper beats Rock</td>
-                    </tr>
-                    <tr>
-                        <td>Skills You Learn</td>
-                        <td>Thinking ahead, guessing patterns, quick decisions</td>
-                    </tr>
-                    <tr>
-                        <td>Game Time</td>
-                        <td>2-5 minutes per game</td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <!-- Game Features -->
-            <div class="game-features">
-                <h2>What You Get</h2>
-                <ul>
-                    <li>Play against computer</li>
-                    <li>See your wins and losses</li>
-                    <li>Different difficulty levels</li>
-                    <li>Learn how to predict moves</li>
-                </ul>
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-purple text-white">
+                    <h3 class="h4 mb-0">Game Rules</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold" >How to Play</td>
+                                    <td>Choose Rock, Paper, or Scissors. The computer will also choose.</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Winning Rules</td>
+                                    <td>Rock beats Scissors, Scissors beat Paper, Paper beats Rock</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Skills You Learn</td>
+                                    <td>Thinking ahead, guessing patterns, quick decisions</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Game Time</td>
+                                    <td>2-5 minutes per game</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
-            <div class="game-actions">
-                <a href="#" class="btn btn-primary">Play Game</a>
-                <a href="games.html" class="btn btn-secondary">Back to Games</a>
+            <!-- Game Features -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body">
+                    <h3 class="h4 fw-bold text-primary-custom mb-3">What You Get</h3>
+                    <ul class="goals-list">
+                        <li class="mb-2">Play against computer</li>
+                        <li class="mb-2">See your wins and losses</li>
+                        <li class="mb-2">Different difficulty levels</li>
+                        <li class="mb-0">Learn how to predict moves</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a href="#" class="btn btn-primary-custom btn-lg px-4 me-md-2 text-white">Play Game</a>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 GameDen. Student Project.</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 GameDen. Student Project.</p>
         </div>
     </footer>
+
+   
 </body>
 </html>
