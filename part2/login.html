@@ -5,30 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Have fun with GameDen, Play interactive online games! Challenge yourself with Sudoku, Rock Paper Scissors, and many more games.">
     <title>Login - GameDen</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+     <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- Custom theme colors -->
     <style>
-        
-
-    
-        .login-container {
-            max-width: 400px;
-            margin: 0 auto;
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        :root {
+            --primary-blue: #203079;
+            --primary-purple: #7C4DFF;
+            --accent-orange: #FFB300;
         }
-
-        .form-group {
-            margin-bottom: 1rem;
+        .bg-primary-custom {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
         }
-
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: bold;
+        .btn-primary-custom {
+            background-color: var(--accent-orange) !important;
+            border-color: var(--accent-orange) !important;
         }
-
+        .btn-purple {
+            background-color: var(--primary-purple) !important;
+            border-color: var(--primary-purple) !important;
+            color: white !important;
+        }
+        .text-primary-custom {
+            color: var(--primary-blue) !important;
+        }
         .form-control {
             width: 100%;
             padding: 0.7rem;
@@ -37,100 +39,206 @@
             font-size: 1rem;
             transition: 0.3;
         }
-    
         .form-control:hover {
             border-color: rgb(97, 84, 213);
             box-shadow: 0 0 8px rgb(97, 84, 213);
             
         }
-
         .btn {
-            width: 100%;
-            padding: 0.8rem;
             background: #7C4DFF;
             color: white;
+            padding: 0.8rem 2rem;
             border: none;
             border-radius: 5px;
             font-size: 1rem;
             cursor: pointer;
-            margin-top: 1rem;
+            width: 100%;
         }
 
         .btn:hover {
             background: #6b3ccc;
         }
-
-        .form-switch {
-            text-align: center;
-            margin-top: 1rem;
+        #logo-icon {
+           width: 40px; 
+           height: 40px;
         }
 
-        .form-switch a {
-            color: #7C4DFF;
-            text-decoration: none;
-        }
+        
     </style>
 </head>
-<body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <img src="images/logo.png" alt="GameDen Logo" class="logo-image">
-                <span>GameDen</span>
+<body class="bg-light">
+    <!-- Bootstrap Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
+                <img id="logo-icon"  src="images/logo.png" alt="GameDen Logo" class="me-2">
+                GameDen
+            </a>
+            
+            <div class="navbar navbar-expand-sm" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="games.html">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a>
+                    </li>
+                </ul>
             </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="games.html" class="nav-link">Games</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-                <li><a href="login.html" class="nav-link active login-btn">Sign In</a></li>
-            </ul>
         </div>
     </nav>
 
-    
-    <section class="login-page" style="margin-top: 50px;">
+    <!-- Login/Signup Forms -->
+    <section class="py-5 mt-5">
         <div class="container">
-            <!-- login page-->
-            <div class="login-container" id="loginForm">
-                <h2 style="text-align: center; color: #203079; margin-bottom: 1.5rem;">Sign In</h2>
-                
-                <form action="https://httpbin.org/get" method="GET">
-                    <div class="form-group">
-                        <label class="form-label">Username or Email:</label>
-                        <input type="text" name="username" class="form-control" required>
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <!-- Login Form -->
+                    <div class="card shadow-sm border-0" id="loginForm">
+                        <div class="card-body p-4">
+                            <h2 class="text-center fw-bold text-muted-custom mb-4">Sign In</h2>
+                            
+                            <form action="https://httpbin.org/get" method="GET" class="needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label fw-bold">Username or Email:</label>
+                                    <input type="text" class="form-control" id="username" name="username" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your username or email.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="password" class="form-label fw-bold">Password:</label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your password.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="remember" name="remember" value="yes">
+                                    <label class="form-check-label" for="remember">Remember me</label>
+                                </div>
+
+                                <button type="submit" class="btn btn-lg w-100 text-white mb-3">Sign In</button>
+                            </form>
+
+                            <div class="text-center">
+                                <p class="mb-0">Don't have an account? 
+                                    <a href="#" class="text-decoration-none fw-bold text-primary-custom" onclick="showSignup()">Sign Up</a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="form-label">Password:</label>
-                        <input type="password" name="password" class="form-control" required>
+                    <!-- Signup Form -->
+                    <div class="card shadow-sm border-0 d-none" id="signupForm">
+                        <div class="card-body p-4">
+                            <h2 class="text-center fw-bold text-muted-custom mb-4">Create Account</h2>
+                            
+                            <form action="https://httpbin.org/get" method="GET" class="needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="fullname" class="form-label fw-bold">Full Name:</label>
+                                    <input type="text" class="form-control" id="fullname" name="fullname" required>
+                                    <div class="invalid-feedback">
+                                        Please enter your full name.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="new_username" class="form-label fw-bold">Username:</label>
+                                    <input type="text" class="form-control" id="new_username" name="new_username" required>
+                                    <div class="invalid-feedback">
+                                        Please choose a username.
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="new_email" class="form-label fw-bold">Email:</label>
+                                    <input type="email" class="form-control" id="new_email" name="new_email" required>
+                                    <div class="invalid-feedback">
+                                        Please enter a valid email.
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="new_password" class="form-label fw-bold">Password:</label>
+                                        <input type="password" class="form-control" id="new_password" name="new_password" required>
+                                        <div class="invalid-feedback">
+                                            Please enter a password.
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="confirm_password" class="form-label fw-bold">Confirm Password:</label>
+                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
+                                        <div class="invalid-feedback">
+                                            Please confirm your password.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="favorite_game" class="form-label fw-bold">Favorite Game:</label>
+                                    <select class="form-select" id="favorite_game" name="favorite_game">
+                                        <option value="">Choose a game</option>
+                                        <option value="tictactoe">Tic Tac Toe</option>
+                                        <option value="sudoku">Sudoku</option>
+                                        <option value="rps">Rock Paper Scissors</option>
+                                        <option value="quiz">Brain Quiz</option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3 form-check">
+                                    <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
+                                    <label class="form-check-label" for="terms">I agree to the terms and conditions</label>
+                                    <div class="invalid-feedback">
+                                        You must agree to the terms.
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-lg w-100 text-white mb-3">Create Account</button>
+                            </form>
+
+                            <div class="text-center">
+                                <p class="mb-0">Already have an account? 
+                                    <a href="#" class="text-decoration-none fw-bold text-primary-custom" onclick="showLogin()">Sign In</a>
+                                </p>
+                            </div>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <label style="display: flex; align-items: center; gap: 10px;">
-                            <input type="checkbox" name="remember" value="yes">
-                            Remember me
-                        </label>
-                    </div>
-
-                    <button type="submit" class="btn">Sign In</button>
-                </form>
-
-                <div class="form-switch">
-                    <p>Don't have an account? <a href="signup.html">Sign Up</a></p>
                 </div>
             </div>
-
-           
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 GameDen. Student Project.</p>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 GameDen. Student Project.</p>
         </div>
     </footer>
 
+    <script>
+        // Interactive Components : Login/Signup Form Toggle
+        function showSignup() {
+            document.getElementById('loginForm').classList.add('d-none');
+            document.getElementById('signupForm').classList.remove('d-none');
+        }
 
+        function showLogin() {
+            document.getElementById('signupForm').classList.add('d-none');
+            document.getElementById('loginForm').classList.remove('d-none');
+        }
+    </script>
 </body>
 </html>
