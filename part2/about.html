@@ -6,21 +6,12 @@
     <meta name="description" content="Have fun with GameDen, Play interactive online games! Challenge yourself with Sudoku, Rock Paper Scissors, and many more games.">
     <title>About Us - GameDen</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-     <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <!-- Custom theme colors -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #203079;
             --primary-purple: #7C4DFF;
             --accent-orange: #FFB300;
-        }
-        .display-4 {
-            color: #203079;
-        }
-        .h3 {
-            color: #203079;
         }
         .bg-primary-custom {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
@@ -29,147 +20,163 @@
             background-color: var(--accent-orange) !important;
             border-color: var(--accent-orange) !important;
         }
-        .btn-purple {
-            background-color: var(--primary-purple) !important;
-            border-color: var(--primary-purple) !important;
-            color: white !important;
-        }
-        .table th{
-            background: #7C4DFF;
+        .table th {
+            background: var(--primary-purple);
             color: white;
-            padding: 1rem;
-            text-align: left;
         }
-        .goals-list {
-            list-style: none;
-            padding: 0;
+        .search-box {
+            border: 2px solid var(--primary-purple);
         }
-
-        .goals-list li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .goals-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #7C4DFF;
-            font-weight: bold;
-        }
-        .course-info {
-            background: #e8f4f8;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-        }
-        #logo-icon {
-           width: 40px; 
-           height: 40px;
-        }
-
     </style>
 </head>
 <body>
-    <!-- Bootstrap Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
-                <img id="logo-icon" src="images/logo.png" alt="GameDen Logo" class="me-2">
+                <img id="logo-icon" src="images/logo.png" alt="GameDen Logo" class="me-2" style="width:40px;height:40px;">
                 GameDen
             </a>
-            
-            <div class="navbar navbar-expand-sm" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="games.html">Games</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="contact.html">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a>
-                    </li>
-                </ul>
-            </div>
         </div>
     </nav>
 
-    <!-- About Content -->
     <section class="py-5 mt-5 bg-light">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    <!-- Header -->
                     <div class="text-center mb-5">
-                        <h1 class="display-4 fw-bold mb-3">About GameDen</h1>
-                        <p class="text-muted">A simple brain games website for our course project</p>
+                        <h1 class="display-4 fw-bold text-primary-custom mb-3">About GameDen</h1>
                     </div>
 
-                    <!-- Main Content Card -->
                     <div class="card shadow-sm border-0 mb-4">
                         <div class="card-body p-4">
-                            <h2 class="h3 fw-bold mb-3">What is GameDen?</h2>
-                            <p class="mb-4">GameDen is a website with fun brain games. We made it for our COMP3700 course project. It has games like Tic Tac Toe, Sudoku, and more to help improve thinking skills.</p>
+                            <!-- Team Members Table -->
+                            <div class="mb-5">
+                                <h2 class="h3 fw-bold text-primary-custom mb-3">Our Team</h2>
+                                
+                                <!-- Add New Team Member Form -->
+                                <div class="card mb-4 border-0 shadow-sm">
+                                    <div class="card-header bg-primary-custom text-white">
+                                        <h5 class="mb-0">➕ Add New Team Member</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="addMemberForm">
+                                            <div class="row g-3">
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control" id="memberName" placeholder="Name" required>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control" id="memberId" placeholder="Student ID" required>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="email" class="form-control" id="memberEmail" placeholder="Email" required>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button type="submit" class="btn btn-primary-custom w-100">Add Member</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
 
-                            <!-- Team Section -->
-                            <div class="mb-4">
-                                <h2 class="h3 fw-bold mb-3">Our Team</h2>
+                                <!-- Search Team Members -->
+                                <div class="card mb-4 border-0 shadow-sm">
+                                    <div class="card-header bg-primary-custom text-white">
+                                        <h5 class="mb-0">🔍 Search Team Members</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row g-3 align-items-center">
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control search-box" id="searchMember" 
+                                                       placeholder="Search by name or student ID...">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button onclick="searchMembers()" class="btn btn-primary-custom me-2">Search</button>
+                                                <button onclick="clearMemberSearch()" class="btn btn-outline-secondary">Show All</button>
+                                            </div>
+                                        </div>
+                                        <div id="searchResults" class="mt-3"></div>
+                                    </div>
+                                </div>
+
                                 <div class="table-responsive">
                                     <table class="table table-striped table-hover">
-                                        <thead class="table">
+                                        <thead class="table-dark">
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Student ID</th>
                                                 <th>Email</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Hajer Said Al saqrii</td>
-                                                <td>145580</td>
-                                                <td>145580@student.squ.edu.om</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Fatima Samir Karaa</td>
-                                                <td>146562</td>
-                                                <td>146562@student.squ.edu.om</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Muna Salim Al Maashani</td>
-                                                <td>144656</td>
-                                                <td>144656@student.squ.edu.om</td>
-                                            </tr>
+                                        <tbody id="teamTableBody">
+                                            <!-- Content loaded dynamically -->
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
 
-                            <!-- Course Info -->
-                            <div class="course-info">
-                                <h2 class="h4 fw-bold mb-3">Course Information</h2>
-                                <p class="mb-1"><strong>Course:</strong> COMP3700 – Introduction to Web Computing</p>
-                                <p class="mb-1"><strong>Instructor:</strong> Dr. Ahmad Soleimani</p>
-                                <p class="mb-1"><strong>Semester:</strong> Fall 2025</p>
-                                <p class="mb-0"><strong>University:</strong> Sultan Qaboos University</p>
-                            </div>
+                            <!-- Games Table -->
+                            <div class="mb-4">
+                                <h2 class="h3 fw-bold text-primary-custom mb-3">Our Games</h2>
+                                
+                                <!-- Add New Game Form -->
+                                <div class="card mb-4 border-0 shadow-sm">
+                                    <div class="card-header bg-primary-custom text-white">
+                                        <h5 class="mb-0">➕ Add New Game</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <form id="addGameForm">
+                                            <div class="row g-3">
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control" id="gameName" placeholder="Game Name" required>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="text" class="form-control" id="gameType" placeholder="Game Type" required>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <input type="number" class="form-control" id="gameDifficulty" placeholder="Difficulty (1-5)" min="1" max="5" required>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button type="submit" class="btn btn-primary-custom w-100">Add Game</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
 
-                            <!-- Project Goals -->
-                            <div>
-                                <h2 class="h3 fw-bold text-primary-custom mb-3">What We Want to Do</h2>
-                                <ul class="goals-list">
-                                    <li class="mb-2"> Make a easy-to-use website</li>
-                                    <li class="mb-2"> Add fun brain games</li>
-                                    <li class="mb-2"> Make it work on phones and computers</li>
-                                    <li class="mb-0"> Let users track their scores</li>
-                                </ul>
+                                <!-- Search Games -->
+                                <div class="card mb-4 border-0 shadow-sm">
+                                    <div class="card-header bg-primary-custom text-white">
+                                        <h5 class="mb-0">🔍 Search Games</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row g-3 align-items-center">
+                                            <div class="col-md-8">
+                                                <input type="text" class="form-control search-box" id="searchGame" 
+                                                       placeholder="Search by game name or type...">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <button onclick="searchGames()" class="btn btn-primary-custom me-2">Search</button>
+                                                <button onclick="clearGameSearch()" class="btn btn-outline-secondary">Show All</button>
+                                            </div>
+                                        </div>
+                                        <div id="gameSearchResults" class="mt-3"></div>
+                                    </div>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover">
+                                        <thead class="table-dark">
+                                            <tr>
+                                                <th>Game Name</th>
+                                                <th>Type</th>
+                                                <th>Difficulty</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="gamesTableBody">
+                                            <!-- Content loaded dynamically -->
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -178,12 +185,251 @@
         </div>
     </section>
 
-        <!-- Footer -->
-    <footer class="bg-dark text-white py-4">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2025 GameDen. All rights reserved.</p>
-        </div>
-    </footer>
+    <script>
+    // =============================================
+    // OBJECT CONSTRUCTORS (Two types as required)
+    // =============================================
 
+    // 1. TeamMember Object Constructor
+    function TeamMember(name, studentId, email) {
+        this.name = name;
+        this.studentId = studentId;
+        this.email = email;
+    }
+
+    // 2. Game Object Constructor
+    function Game(name, type, difficulty) {
+        this.name = name;
+        this.type = type;
+        this.difficulty = difficulty;
+    }
+
+    // =============================================
+    // ARRAYS INITIALIZATION
+    // =============================================
+
+    // Team Members Array
+    let teamMembers = [
+        new TeamMember("Hajer Said Al saqrii", "145580", "145580@student.squ.edu.om"),
+        new TeamMember("Fatima Samir Karaa", "146562", "146562@student.squ.edu.om"),
+        new TeamMember("Muna Salim Al Maashani", "144656", "144656@student.squ.edu.om")
+    ];
+
+    // Games Array
+    let games = [
+        new Game("Sudoku", "Puzzle", 4),
+        new Game("Tic Tac Toe", "Strategy", 2),
+        new Game("Rock Paper Scissors", "Casual", 1),
+        new Game("Memory Cards", "Memory", 3)
+    ];
+
+    // =============================================
+    // DISPLAY FUNCTIONS (Two functions as required)
+    // =============================================
+
+    // Function 1: Display Team Members Table
+    function displayTeamTable() {
+        const tableBody = document.getElementById('teamTableBody');
+        tableBody.innerHTML = '';
+        
+        if (teamMembers.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="3" class="text-center text-muted py-4">No team members found</td></tr>';
+            return;
+        }
+        
+        teamMembers.forEach((member) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><strong>${member.name}</strong></td>
+                <td>${member.studentId}</td>
+                <td>${member.email}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Function 2: Display Games Table
+    function displayGamesTable() {
+        const tableBody = document.getElementById('gamesTableBody');
+        tableBody.innerHTML = '';
+        
+        if (games.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="3" class="text-center text-muted py-4">No games found</td></tr>';
+            return;
+        }
+        
+        games.forEach((game) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><strong>${game.name}</strong></td>
+                <td>${game.type}</td>
+                <td>${'★'.repeat(game.difficulty)}${'☆'.repeat(5-game.difficulty)} (${game.difficulty}/5)</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // =============================================
+    // ADD FUNCTIONS
+    // =============================================
+
+    // Add new team member
+    document.getElementById('addMemberForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('memberName').value;
+        const studentId = document.getElementById('memberId').value;
+        const email = document.getElementById('memberEmail').value;
+        
+        const newMember = new TeamMember(name, studentId, email);
+        teamMembers.push(newMember);
+        
+        displayTeamTable();
+        this.reset();
+        
+        alert('Team member added successfully!');
+    });
+
+    // Add new game
+    document.getElementById('addGameForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const name = document.getElementById('gameName').value;
+        const type = document.getElementById('gameType').value;
+        const difficulty = parseInt(document.getElementById('gameDifficulty').value);
+        
+        const newGame = new Game(name, type, difficulty);
+        games.push(newGame);
+        
+        displayGamesTable();
+        this.reset();
+        
+        alert('Game added successfully!');
+    });
+
+    // =============================================
+    // SEARCH FUNCTIONS
+    // =============================================
+
+    // Search team members
+    function searchMembers() {
+        const searchTerm = document.getElementById('searchMember').value.toLowerCase();
+        const resultsDiv = document.getElementById('searchResults');
+        const tableBody = document.getElementById('teamTableBody');
+        
+        if (!searchTerm) {
+            resultsDiv.innerHTML = '<div class="alert alert-warning">Please enter a search term</div>';
+            displayTeamTable();
+            return;
+        }
+        
+        const filteredMembers = teamMembers.filter(member => 
+            member.name.toLowerCase().includes(searchTerm) || 
+            member.studentId.includes(searchTerm)
+        );
+        
+        tableBody.innerHTML = '';
+        
+        if (filteredMembers.length === 0) {
+            resultsDiv.innerHTML = `<div class="alert alert-info">No team members found for "${searchTerm}"</div>`;
+            tableBody.innerHTML = '<tr><td colspan="3" class="text-center text-muted py-4">No matching team members found</td></tr>';
+            return;
+        }
+        
+        resultsDiv.innerHTML = `<div class="alert alert-success">Found ${filteredMembers.length} team member(s)</div>`;
+        
+        filteredMembers.forEach((member) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><strong>${member.name}</strong></td>
+                <td>${member.studentId}</td>
+                <td>${member.email}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // Search games
+    function searchGames() {
+        const searchTerm = document.getElementById('searchGame').value.toLowerCase();
+        const resultsDiv = document.getElementById('gameSearchResults');
+        const tableBody = document.getElementById('gamesTableBody');
+        
+        if (!searchTerm) {
+            resultsDiv.innerHTML = '<div class="alert alert-warning">Please enter a search term</div>';
+            displayGamesTable();
+            return;
+        }
+        
+        const filteredGames = games.filter(game => 
+            game.name.toLowerCase().includes(searchTerm) || 
+            game.type.toLowerCase().includes(searchTerm)
+        );
+        
+        tableBody.innerHTML = '';
+        
+        if (filteredGames.length === 0) {
+            resultsDiv.innerHTML = `<div class="alert alert-info">No games found for "${searchTerm}"</div>`;
+            tableBody.innerHTML = '<tr><td colspan="3" class="text-center text-muted py-4">No matching games found</td></tr>';
+            return;
+        }
+        
+        resultsDiv.innerHTML = `<div class="alert alert-success">Found ${filteredGames.length} game(s)</div>`;
+        
+        filteredGames.forEach((game) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td><strong>${game.name}</strong></td>
+                <td>${game.type}</td>
+                <td>${'★'.repeat(game.difficulty)}${'☆'.repeat(5-game.difficulty)} (${game.difficulty}/5)</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    }
+
+    // =============================================
+    // CLEAR SEARCH FUNCTIONS
+    // =============================================
+
+    function clearMemberSearch() {
+        document.getElementById('searchMember').value = '';
+        document.getElementById('searchResults').innerHTML = '';
+        displayTeamTable();
+    }
+
+    function clearGameSearch() {
+        document.getElementById('searchGame').value = '';
+        document.getElementById('gameSearchResults').innerHTML = '';
+        displayGamesTable();
+    }
+
+    // =============================================
+    // INITIALIZE PAGE
+    // =============================================
+
+    function initializePage() {
+        displayTeamTable();
+        displayGamesTable();
+        
+        // Enable Enter key for searches
+        document.getElementById('searchMember').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchMembers();
+            }
+        });
+        
+        document.getElementById('searchGame').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchGames();
+            }
+        });
+        
+        console.log('✅ Page initialized with two object types, two arrays, and two display functions');
+    }
+
+    document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
 </body>
 </html>
