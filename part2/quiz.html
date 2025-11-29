@@ -16,34 +16,6 @@
             --primary-purple: #7C4DFF;
             --accent-orange: #FFB300;
         }
-        .form-control {
-            width: 100%;
-            padding: 0.7rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: 0.3;
-        }
-        .form-control:hover {
-            border-color: rgb(97, 84, 213);
-            box-shadow: 0 0 8px rgb(97, 84, 213);
-            
-        }
-        .btn {
-            background: #7C4DFF;
-            color: white;
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .btn:hover {
-            background: #6b3ccc;
-            color: white;
-        }
         .bg-primary-custom {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
         }
@@ -59,13 +31,62 @@
         .text-primary-custom {
             color: var(--primary-blue) !important;
         }
+        .game-detail-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
         #logo-icon {
            width: 40px; 
            height: 40px;
         }
+        .card-header {
+            background: #203079;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+        .goals-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .goals-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .goals-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #7C4DFF;
+            font-weight: bold;
+        }
+        .table th{
+            background: #FFB300;
+            color: white;
+            padding: 1rem;
+            text-align: left;
+        }
+        .btn-game {
+            background: #FFB300;
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .btn-game:hover {
+            background: #c18a09;
+            color: white;
+        }
     </style>
 </head>
-<body class="bg-light">
+<body>
     <!-- Bootstrap Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div class="container">
@@ -96,253 +117,189 @@
         </div>
     </nav>
 
-    <!-- Quiz Content -->
+    <!-- Game Detail Content -->
     <section class="py-5 mt-5">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-10">
-                    <!-- Main Quiz Card -->
-                    <div class="card shadow-sm border-0">
-                        <div class="card-body p-4">
-                            <!-- Header -->
-                            <div class="text-center mb-5">
-                                <h1 class="display-5 fw-bold text-primary-custom">Brain Quiz</h1>
-                                <p class="text-muted">Test your knowledge with these fun questions!</p>
-                            </div>
-
-                            <!-- Start Quiz Form -->
-                            <div class="mb-5">
-                                <h2 class="h3 fw-bold text-primary-custom mb-4">Start Quiz</h2>
-                                <form action="https://httpbin.org/get" method="GET" class="needs-validation" novalidate>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="player_name" class="form-label fw-bold">Your Name:</label>
-                                            <input type="text" class="form-control" id="player_name" name="player_name" required>
-                                            <div class="invalid-feedback">
-                                                Please enter your name.
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="email" class="form-label fw-bold">Email:</label>
-                                            <input type="email" class="form-control" id="email" name="email" required>
-                                            <div class="invalid-feedback">
-                                                Please enter a valid email.
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="category" class="form-label fw-bold">Category:</label>
-                                            <select class="form-select" id="category" name="category" required>
-                                                <option value="">Choose category</option>
-                                                <option value="general">General Knowledge</option>
-                                                <option value="science">Science</option>
-                                                <option value="math">Mathematics</option>
-                                                <option value="history">History</option>
-                                            </select>
-                                            <div class="invalid-feedback">
-                                                Please select a category.
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="question_count" class="form-label fw-bold">Number of Questions:</label>
-                                            <input type="number" class="form-control" id="question_count" name="question_count" min="5" max="20" value="10" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label class="form-label fw-bold">Difficulty Level:</label>
-                                        <div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="difficulty" id="easy" value="easy" checked>
-                                                <label class="form-check-label" for="easy">Easy</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="difficulty" id="medium" value="medium">
-                                                <label class="form-check-label" for="medium">Medium</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="difficulty" id="hard" value="hard">
-                                                <label class="form-check-label" for="hard">Hard</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- Interactive Components : Toggle Switches-->
-                                    <div class="mb-3">
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="timer" name="timer" value="yes">
-                                            <label class="form-check-label fw-bold" for="timer">Enable timer for questions</label>
-                                        </div>
-                                        <div class="form-check form-switch">
-                                            <input class="form-check-input" type="checkbox" id="sound" name="sound" value="yes" checked>
-                                            <label class="form-check-label fw-bold" for="sound">Enable sound effects</label>
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" class="btn  btn-lg w-100 text-white">Start Quiz</button>
-                                </form>
-                            </div>
-
-                            <hr class="my-5">
-
-                            <!-- Suggest a Question Form -->
-                            <div class="mb-5">
-                                <h2 class="h3 fw-bold text-primary-custom mb-4">Suggest a Question</h2>
-                                <form action="https://httpbin.org/get" method="GET" class="needs-validation" novalidate>
-                                    <div class="mb-3">
-                                        <label for="new_question" class="form-label fw-bold">Your Question:</label>
-                                        <input type="text" class="form-control" id="new_question" name="new_question" required placeholder="Enter your question here">
-                                        <div class="invalid-feedback">
-                                            Please enter a question.
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="correct_answer" class="form-label fw-bold">Correct Answer:</label>
-                                        <input type="text" class="form-control" id="correct_answer" name="correct_answer" required>
-                                        <div class="invalid-feedback">
-                                            Please enter the correct answer.
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="wrong_answer1" class="form-label fw-bold">Wrong Answer 1:</label>
-                                            <input type="text" class="form-control" id="wrong_answer1" name="wrong_answer1" required>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="wrong_answer2" class="form-label fw-bold">Wrong Answer 2:</label>
-                                            <input type="text" class="form-control" id="wrong_answer2" name="wrong_answer2" required>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="wrong_answer3" class="form-label fw-bold">Wrong Answer 3:</label>
-                                            <input type="text" class="form-control" id="wrong_answer3" name="wrong_answer3" required>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="question_category" class="form-label fw-bold">Category:</label>
-                                            <select class="form-select" id="question_category" name="question_category" required>
-                                                <option value="">Choose category</option>
-                                                <option value="general">General Knowledge</option>
-                                                <option value="science">Science</option>
-                                                <option value="history">History</option>
-                                                <option value="math">Math</option>
-                                                <option value="geography">Geography</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="question_difficulty" class="form-label fw-bold">Difficulty:</label>
-                                        <select class="form-select" id="question_difficulty" name="question_difficulty">
-                                            <option value="easy">Easy</option>
-                                            <option value="medium">Medium</option>
-                                            <option value="hard">Hard</option>
-                                        </select>
-                                    </div>
-
-                                    <div class="mb-3 form-check">
-                                        <input type="checkbox" class="form-check-input" id="agree" name="agree" required>
-                                        <label class="form-check-label fw-bold" for="agree">I confirm this is an original question</label>
-                                        <div class="invalid-feedback">
-                                            You must confirm this is original.
-                                        </div>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-lg w-100">Submit Question</button>
-                                </form>
-                            </div>
-
-                            <hr class="my-5">
-
-                            <!-- Quiz Results Form -->
-                            <div>
-                                <h2 class="h3 fw-bold text-primary-custom mb-4">Your Quiz Results</h2>
-                                <form action="https://httpbin.org/get" method="GET" class="needs-validation" novalidate>
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="result_name" class="form-label fw-bold">Player Name:</label>
-                                            <input type="text" class="form-control" id="result_name" name="result_name" required>
-                                            <div class="invalid-feedback">
-                                                Please enter player name.
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="score" class="form-label fw-bold">Score:</label>
-                                            <input type="number" class="form-control" id="score" name="score" min="0" max="100" required placeholder="Enter your score">
-                                            <div class="invalid-feedback">
-                                                Please enter your score.
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                            <label for="time_taken" class="form-label fw-bold">Time Taken (minutes):</label>
-                                            <input type="number" class="form-control" id="time_taken" name="time_taken" min="1" max="60" required>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                            <label for="result_category" class="form-label fw-bold">Quiz Category:</label>
-                                            <select class="form-select" id="result_category" name="result_category" required>
-                                                <option value="">Choose category</option>
-                                                <option value="general">General Knowledge</option>
-                                                <option value="science">Science</option>
-                                                <option value="math">Mathematics</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="comments" class="form-label fw-bold">Comments:</label>
-                                        <textarea class="form-control" id="comments" name="comments" rows="3" placeholder="Any comments about the quiz?"></textarea>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-lg w-100">Save Results</button>
-                                </form>
-                            </div>
-
-                            <!-- Navigation Buttons -->
-                            <div class="text-center mt-5">
-                                <div class="btn-group" role="group">
-                                    <a href="games.html" class="btn btn-outline-primary">Back to Games</a>
-                                    <a href="index.html" class="btn btn-muted-custom text-white">Home</a>
-                                </div>
-                            </div>
-                        </div>
+            <div class="row">
+                <!-- Game Image -->
+                <div class="col-lg-4 mb-4">
+                    <img src="images/quiz.jpg" alt="Brain Quiz" class="game-detail-image shadow">
+                </div>
+                
+                <!-- Game Info -->
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold text-primary-custom mb-3">Brain Quiz</h1>
+                    <p class="lead text-muted mb-4">Test your knowledge with interactive quizzes across multiple categories and difficulty levels.</p>
+                    
+                    <div class="d-flex flex-wrap gap-2 mb-4">
+                        <button type="button" class="btn btn-outline-info">Knowledge</button>
+                        <button type="button" class="btn btn-outline-warning">Various</button>
+                        <button type="button" class="btn btn-outline-success">1 Player</button>
                     </div>
                 </div>
+            </div>
+
+            <!-- Game Rules Table -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-purple text-white">
+                    <h3 class="h4 mb-0">Game Rules & Information</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="fw-bold" >Objective</td>
+                                    <td>Answer quiz questions correctly to score points and test your knowledge</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Gameplay</td>
+                                    <td>Multiple-choice questions with timer and score tracking</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Skills Developed</td>
+                                    <td>General knowledge, Quick thinking, Memory recall</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Game Features</td>
+                                    <td>5 categories, 3 difficulty levels, Timer, Score tracking</td>
+                                </tr>
+                                <tr>
+                                    <td class="fw-bold">Average Game Time</td>
+                                    <td>5-15 minutes</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Difficulty Levels Table -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-primary-custom text-white">
+                    <h3 class="h4 mb-0">Difficulty Levels</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table">
+                                <tr>
+                                    <th>Difficulty</th>
+                                    <th>Question Types</th>
+                                    <th>Time Limit</th>
+                                    <th>Skill Level</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Easy</td>
+                                    <td>Basic general knowledge</td>
+                                    <td>45 seconds</td>
+                                    <td>Beginner</td>
+                                </tr>
+                                <tr>
+                                    <td>Medium</td>
+                                    <td>Mixed categories</td>
+                                    <td>30 seconds</td>
+                                    <td>Intermediate</td>
+                                </tr>
+                                <tr>
+                                    <td>Hard</td>
+                                    <td>Advanced & specialized</td>
+                                    <td>20 seconds</td>
+                                    <td>Expert</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Categories Table -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-header bg-primary-custom text-white">
+                    <h3 class="h4 mb-0">Quiz Categories</h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table">
+                                <tr>
+                                    <th>Category</th>
+                                    <th>Topics Covered</th>
+                                    <th>Questions</th>
+                                    <th>Popularity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>General Knowledge</td>
+                                    <td>Everyday facts, trivia</td>
+                                    <td>50+</td>
+                                    <td>⭐⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>Science</td>
+                                    <td>Biology, Chemistry, Physics</td>
+                                    <td>40+</td>
+                                    <td>⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>History</td>
+                                    <td>World events, Famous people</td>
+                                    <td>35+</td>
+                                    <td>⭐⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>Geography</td>
+                                    <td>Countries, Capitals, Landmarks</td>
+                                    <td>30+</td>
+                                    <td>⭐⭐⭐</td>
+                                </tr>
+                                <tr>
+                                    <td>Mathematics</td>
+                                    <td>Basic math, Logic, Puzzles</td>
+                                    <td>25+</td>
+                                    <td>⭐⭐⭐</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Features -->
+            <div class="card shadow-sm border-0 mb-4">
+                <div class="card-body">
+                    <h3 class="h4 fw-bold text-primary-custom mb-3">Features</h3>
+                    <ul class="goals-list">
+                        <li class="mb-2">5 different knowledge categories</li>
+                        <li class="mb-2">3 difficulty levels (Easy, Medium, Hard)</li>
+                        <li class="mb-2">Timer-based questions with different time limits</li>
+                        <li class="mb-2">Real-time score tracking and progress</li>
+                        <li class="mb-2">Performance rating with star system</li>
+                        <li class="mb-0">Interactive feedback for correct/wrong answers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                <a href="quiz-game.html" class="btn btn-game btn-lg px-4 me-md-2">
+                    🎮 Play Brain Quiz
+                </a>
+                <a href="games.html" class="btn btn-outline-primary btn-lg px-4">
+                    ← Back to Games
+                </a>
             </div>
         </div>
     </section>
 
-       <!-- Footer -->
+    <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container text-center">
             <p class="mb-0">&copy; 2025 GameDen. All rights reserved.</p>
         </div>
     </footer>
-
-    <script>
-        // - Interactive Components-- Bootstrap form validation
-        (function () {
-            'use strict'
-            var forms = document.querySelectorAll('.needs-validation')
-            Array.prototype.slice.call(forms)
-                .forEach(function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (!form.checkValidity()) {
-                            event.preventDefault()
-                            event.stopPropagation()
-                        }
-                        form.classList.add('was-validated')
-                    }, false)
-                })
-        })()
-    </script>
-
-    
 </body>
 </html>
