@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Have fun with GameDen, Play interactive online games! Challenge yourself with Sudoku, Rock Paper Scissors, and many more games.">
+    <title>Questionnaire - GameDen</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+     <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- Custom theme colors -->
+    <style>
+       :root {
+            --primary-color: #203079;
+            --secondary-color: #7C4DFF;
+            --light-bg: #f8f9fa;
+            --dark-text: #343a40;
+            --border-radius: 12px;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            background-color: var(--light-bg);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-text);
+            padding-top: 20px;
+            padding-bottom: 50px;
+        }
+        
+        .container {
+            max-width: 800px;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .form-section {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+        }
+        
+        .text-primary-custom {
+            color: var(--primary-color) !important;
+        }
+        
+        .btn-purple {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-purple:hover {
+            background-color: #5a32a3;
+            border-color: #5a32a3;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(111, 66, 193, 0.3);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.25rem rgba(111, 66, 193, 0.25);
+        }
+        
+        .form-check-input:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+        
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 3rem;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .success-message i {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 1rem;
+        }
+        
+        .form-label {
+            display: flex;
+            align-items: center;
+        }
+        
+        .error-message {
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .is-invalid {
+            border-color: #dc3545 !important;
+        }
+        .display-5 {
+            color: #203079;
+        }
+   
+    </style>
+</head>
+<body>
+    <!-- Bootstrap Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
+                <img src="images/logo.png" alt="GameDen Logo" class="me-2" style="width: 40px; height: 40px;">
+                GameDen
+            </a>
+            
+            
+            
+            <div class="navbar navbar-expand-sm" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="games.html">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Questionnaire Form -->
+    <section class="py-5 mt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <!-- Header -->
+                    <div class="header text-center mb-5">
+                        <h1 class="display-4 fw-bold text-light-custom mb-3">Share Your Thoughts! </h1>
+                        <p class="text-light">Share your experience and help us improve GameDen and unlock better brain games</p>
+                    </div>
+
+                    <!-- Form Sections -->
+                    <form id="feedbackForm">
+                        <!-- Section 1: Personal Information -->
+                        <div class="form-section">
+                            <h2 class="h4 mb-4 text-primary-custom"> User Information </h2>
+                            
+                            <!-- Username -->
+                            <div class="mb-3">
+                                <label for="username" class="form-label fw-bold"> Username <span class="text-danger">*</span> </label>
+                                <input type="text" class="form-control" id="username" name="username" 
+                                       placeholder="Enter your username">
+                                <div class="error-message" id="usernameError">
+                                    Username must be at least 4 characters with only letters, numbers, or underscores
+                                </div>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="mb-3">
+                                <label for="password" class="form-label fw-bold">Password <span class="text-danger">*</span> </label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+                                <div class="error-message" id="passwordError">
+                                    Password must be at least 8 characters and can contain letters, numbers, or @ symbol
+                                </div>
+                            </div>
+
+                            <!-- Age -->
+                            <div class="mb-3">
+                                <label for="age" class="form-label fw-bold"> Age <span class="text-danger">*</span> </label>
+                                <input type="number" class="form-control" id="age" name="age" placeholder="Enter your age">
+                                <div class="error-message" id="ageError">Age must 5 and above </div>
+                            </div>
+                        </div>
+
+                        <!-- Section 2: Gaming Experience -->
+                        <div class="form-section">
+                            <h2 class="h4 mb-4 text-primary-custom">Your Gaming Experience </h2>
+                            
+                            <!-- Question 1: Favorite Game -->
+                            <div class="mb-4">
+                                <label for="favorite_game" class="form-label fw-bold"> Which game do you enjoy most? <span class="text-danger">*</span> </label>
+                                <select class="form-select" id="favorite_game" name="favorite_game">
+                                    <option value="">Choose a game...</option>
+                                    <option value="sudoku">Sudoku Challenge</option>
+                                    <option value="rps">Rock Paper Scissors</option>
+                                    <option value="tictactoe">Tic Tac Toe</option>
+                                    <option value="quiz">Brain Quiz</option>
+                                </select>
+                                <div class="error-message" id="gameError">
+                                    Please select your favorite game
+                                </div>
+                            </div>
+                            
+                            <!-- Question 2: Game Rating --> 
+                            <div class="mb-4">
+                                <label class="form-label fw-bold"> How would you rate our games?  <span class="text-danger">*</span> </label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="rating" id="excellent" value="excellent">
+                                        <label class="form-check-label" for="excellent"> Excellent </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="rating" id="good" value="good">
+                                        <label class="form-check-label" for="good"> Good </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="rating" id="average" value="average">
+                                        <label class="form-check-label" for="average"> Average </label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="rating" id="poor" value="poor">
+                                        <label class="form-check-label" for="poor">  Poor </label>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="ratingError">
+                                    Please rate our games
+                                </div>
+                            </div>
+
+                            <!-- Question 3: Improvements (Checkboxes) -->
+                            <div class="mb-4">
+                                <label class="form-label fw-bold"> What should we improve?(Choose at least 2) <span class="text-danger">*</span> </label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="improvements" value="difficulty" id="improve1">
+                                            <label class="form-check-label" for="improve1"> More difficulty levels</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="improvements" value="design" id="improve2">
+                                            <label class="form-check-label" for="improve2"> Better design </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="improvements" value="games" id="improve3">
+                                            <label class="form-check-label" for="improve3"> More game types </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="improvements" value="mobile" id="improve4">
+                                            <label class="form-check-label" for="improve4"> Better mobile experience </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="improvementsError">
+                                    Please select at least 2 improvements
+                                </div>
+                            </div>
+
+                            <!-- Question 4: Comments (Textarea) -->
+                            <div class="mb-3">
+                                <label for="comments" class="form-label fw-bold">Your Feedback </label>
+                                <textarea class="form-control" id="comments" name="comments" rows="3" placeholder="Share any other thoughts or suggestions..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Submit Section -->
+                        <div class="form-section text-center"> 
+                            <button type="submit" class="btn btn-lg btn-purple px-5"> Submit Feedback </button>
+                        </div>
+                    </form>
+                    
+                    <!-- Success Message (Hidden by default) -->
+                    <div class="success-message" id="successMessage">
+                        <i class="fas fa-check-circle"></i>
+                        <h2 class="display-5 mb-3">Thank You!</h2>
+                        <p class="mb-4">Your feedback has been submitted successfully. We appreciate your efforts !</p>
+                        <a href="index.html" class="btn btn-purple">Return to Homepage</a>
+                    </div>
+                    
+                    
+
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 GameDen. Student Project.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Function to hide all error messages and remove invalid styling
+        // This function is called before validation to clear any previous errors
+        function hideAllErrors() {
+            // Get all elements with the class 'error-message'
+            let errors = document.querySelectorAll('.error-message');
+            
+            // Loop through each error message and hide it
+            for (let i = 0; i < errors.length; i++) {
+                errors[i].style.display = 'none';
+            }
+    
+            // Get all form inputs and select elements
+            let inputs = document.querySelectorAll('.form-control, .form-select');
+    
+            // Loop through each input and remove the red border (is-invalid class)
+            for (let i = 0; i < inputs.length; i++) {
+                inputs[i].classList.remove('is-invalid');
+            }
+        }        
+
+        // Function to show error for a specific field
+        // This adds red border to the input and displays the error message
+        function showError(fieldId, errorId) {
+            // Add red border to the input field
+            document.getElementById(fieldId).classList.add('is-invalid');
+            // Display the error message below the field
+            document.getElementById(errorId).style.display = 'block';
+        }
+
+        // Main validation function that runs when form is submitted
+        // This is attached to the form's submit event
+        document.getElementById("feedbackForm").addEventListener("submit", function (event) {
+            // Prevent the form from submitting normally
+            // This allows us to validate first before submission
+            event.preventDefault();
+
+            // Clear any previous error messages and styling
+            hideAllErrors();
+
+            // ========== GET FORM VALUES ==========
+            // Get the username value and remove any extra spaces
+            let username = document.getElementById("username").value.trim();
+    
+            // Get the password value
+            let password = document.getElementById("password").value;
+    
+            // Get the age value
+            let age = document.getElementById("age").value;
+    
+            // Check if any rating radio button is selected
+            let rating = document.querySelector('input[name="rating"]:checked');
+    
+            // Get the selected favorite game value
+            let favoriteGame = document.getElementById("favorite_game").value;
+    
+            // Get all checked improvement checkboxes
+            let checkboxes = document.querySelectorAll('input[name="improvements"]:checked');
+
+            // Track if the form is valid (start as true)
+            let valid = true;
+
+            // ========== ADVANCED VALIDATION 1: USERNAME PATTERN ==========
+            // Regular expression pattern for username validation:
+            // ^[A-Za-z0-9_]{5,}$ means:
+            // ^ - start of string
+            // [A-Za-z0-9_] - allows uppercase letters, lowercase letters, numbers, and underscores
+            // {5,} - must be at least 5 characters long (no maximum limit)
+            // $ - end of string
+            let usernamePattern = /^[A-Za-z0-9_]{4,}$/;
+    
+            // Test if username matches the pattern
+            if (!usernamePattern.test(username)) {
+                // If validation fails, show error and mark form as invalid
+                showError('username', 'usernameError');
+                valid = false;
+            }
+
+            // ========== ADVANCED VALIDATION 2: PASSWORD PATTERN ==========
+            // Regular expression pattern for password validation:
+            // ^[A-Za-z0-9@]{8,}$ means:
+            // ^ - start of string
+            // [A-Za-z0-9@] - allows uppercase letters, lowercase letters, numbers, and @ symbol
+            // {8,} - must be at least 8 characters long (no maximum limit)
+            // $ - end of string
+            let passwordPattern = /^[A-Za-z0-9@]{8,}$/;
+    
+            // Test if password matches the pattern
+            if (!passwordPattern.test(password)) {
+                // If validation fails, show error and mark form as invalid
+                showError('password', 'passwordError');
+                valid = false;
+            }
+
+            // ========== ADVANCED VALIDATION 3: AGE RANGE VALIDATION ==========
+            // Check if age is valid:
+            // - Must not be empty
+            // - Must be a valid number (not NaN)
+            // - Must be greater than 5
+            if (age === "" || isNaN(age) || parseFloat(age) <= 4) {
+                // If validation fails, show error and mark form as invalid
+                showError('age', 'ageError');
+                valid = false;
+            }
+
+            // ========== BASIC VALIDATIONS FOR OTHER FIELDS ==========
+            
+            // Favorite game validation: must select a game from dropdown
+            if (favoriteGame === "") {
+                showError('favorite_game', 'gameError');
+                valid = false;
+            }
+
+            // Rating validation: must select one radio button
+            if (!rating) {
+                // For radio buttons, we just show the error message (no border to add)
+                document.getElementById('ratingError').style.display = 'block';
+                valid = false;
+            }
+
+            // Improvements validation: must select at least 2 checkboxes
+            // checkboxes.length tells us how many checkboxes are checked
+            if (checkboxes.length < 2) {
+                // For checkboxes, we just show the error message (no border to add)
+                document.getElementById('improvementsError').style.display = 'block';
+                valid = false;
+            }
+
+            // ========== FINAL VALIDATION CHECK ==========
+            // If all validations passed (valid is still true)
+            if (valid) {
+                // Hide the form to prevent further editing
+                document.getElementById("feedbackForm").style.display = "none";
+                // Show the success message to the user
+                document.getElementById("successMessage").style.display = "block";
+            }
+            // If valid is false, the form stays visible with error messages
+            });
+    </script>
+</body>
+</html>
