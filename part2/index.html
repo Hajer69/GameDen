@@ -139,6 +139,11 @@
                     <h1 class="display-4 fw-bold mb-4">Train Your Brain with Fun Games</h1>
                     <p class=" mb-4 opacity-75">Improve your cognitive skills with our collection of brain-enhancing games</p>
                     <a href="games.html" id="btn-warning" class="btn btn-primary-custom btn-lg text-white px-4">Start Playing</a>
+                    <button class="btn btn-outline-light btn-lg ms-2" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#howItWorksModal">
+                        How GameDen Works
+                    </button>
                 </div>
             </div>
         </div>
@@ -156,12 +161,31 @@
             
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    <div class="photo-gallery">
-                        <img src="images/rps.jpg" class="gallery-photo active" id="photo1" alt="Rock Paper Scissors Game">
-                        <img src="images/sudoku.jpg" class="gallery-photo" id="photo2" alt="Sudoku Challenge Game">
-                        <img src="images/tictactoe.jpg" class="gallery-photo" id="photo3" alt="Tic Tac Toe Game">
-                        <img src="images/quiz.jpg" class="gallery-photo" id="photo4" alt="Brain Quiz Game">
+                   <div id="gameCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="3000">
+                            <img src="images/rps.jpg" class="d-block w-100" alt="Rock Paper Scissors">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="images/sudoku.jpg" class="d-block w-100" alt="Sudoku Challenge">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="images/tictactoe.jpg" class="d-block w-100" alt="Tic Tac Toe">
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="images/quiz.jpg" class="d-block w-100" alt="Brain Quiz">
+                        </div>
                     </div>
+
+                    <!-- Optional Controls -->
+                    <button class="carousel-control-prev" type="button" data-bs-target="#gameCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#gameCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </button>
+                </div>
+
                 </div>
             </div>
         </div>
@@ -284,6 +308,29 @@
         </div>
     </div>
 
+    <!-- How GameDen Works Modal -->
+    <div class="modal fade" id="howItWorksModal" tabindex="-1" aria-labelledby="howItWorksLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+        
+        <div class="modal-header">
+            <h5 class="modal-title" id="howItWorksLabel">How GameDen Works</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+            GameDen offers fun brain-training games like Sudoku, Rock–Paper–Scissors, Tic-Tac-Toe, and quizzes.
+            Use the Puzzle Calculator and Fun Dice Picker to get personalized game recommendations.
+        </div>
+
+        <div class="modal-footer">
+            <a href="games.html" class="btn btn-primary">Explore Games</a>
+        </div>
+
+        </div>
+    </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-dark text-white py-4">
         <div class="container text-center">
@@ -330,29 +377,6 @@
         // Update banner every second
         setInterval(updateBanner, 1000);
         updateBanner(); // Run immediately when page loads
-
-
-
-        // Photo Gallery Rotation
-        var currentPhoto = 1;
-
-        function rotateGallery() {
-            // Hide current photo
-            document.getElementById('photo' + currentPhoto).classList.remove('active');
-    
-            // Move to next photo
-            currentPhoto = currentPhoto + 1;
-            if (currentPhoto > 4) {
-                currentPhoto = 1;
-            }
-    
-            // Show next photo
-            document.getElementById('photo' + currentPhoto).classList.add('active');
-        }
-
-        // Start gallery rotation (change every 3 seconds)
-        setInterval(rotateGallery, 3000);
-
 </script>
    
 </body>
