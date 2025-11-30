@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Have fun with GameDen! Roll a dice to get a random brain game recommendation.">
+    <title>Fun Page - GameDen</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <style>
+        :root {
+            --primary-blue: #203079;
+            --primary-purple: #7C4DFF;
+            --accent-orange: #FFB300;
+        }
+        .bg-primary-custom {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
+        }
+        .text-primary-custom {
+            color: var(--primary-blue) !important;
+        }
+        .btn-purple {
+            background-color: var(--primary-purple) !important;
+            border-color: var(--primary-purple) !important;
+            color: white !important;
+        }
+        .btn-warning-custom {
+            background-color: var(--accent-orange) !important;
+            border-color: var(--accent-orange) !important;
+            color: white !important;
+        }
+        #logo-icon {
+            width: 40px;
+            height: 40px;
+        }
+
+        /*  dice styling */
+        .dice-button {
+            width: 120px;
+            height: 120px;
+            border-radius: 20px;
+            border: none;
+            font-size: 3rem;
+            font-weight: bold;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .dice-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+        }
+        .dice-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+        .dice-area {
+            min-height: 220px;
+        }
+        .history-item {
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
+            <img id="logo-icon" src="images/logo.png" alt="GameDen Logo" class="me-2">
+            GameDen
+        </a>
+
+        <div class="navbar navbar-expand-sm" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="games.html">Games</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Header -->
+<section class="py-5 mt-5 bg-primary-custom text-white">
+    <div class="container py-4 text-center">
+        <h1 class="display-5 fw-bold mb-3">Fun Page – Game Dice Picker</h1>
+        <p class="mb-0">Click the dice to get a random brain game recommendation from GameDen.</p>
+    </div>
+</section>
+
+<!-- Main content -->
+<main class="container py-5">
+    <div class="row justify-content-center">
+        <!-- Dice + Result -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-4">
+                <div class="card-body text-center dice-area">
+                    <h2 class="h4 text-primary-custom mb-3">Roll the Brain Dice</h2>
+                    <p class="text-muted mb-4">
+                        Not sure what to play? Let the dice choose a game for you. Each roll gives you
+                        a random game along with a short description and a direct link.
+                    </p>
+
+                    <!-- Dice button -->
+                    <button id="diceButton" class="dice-button mb-3" type="button">
+                        🎲
+                    </button>
+
+                    <p class="text-muted mb-3" id="diceHint">
+                        Click the dice to roll!
+                    </p>
+
+                    <!-- Result card (filled by JavaScript) -->
+                    <div id="resultCard" class="card border-0 d-none">
+                        <div class="card-body">
+                            <h3 id="gameName" class="h5 fw-bold mb-2"></h3>
+                            <p id="gameDescription" class="mb-1"></p>
+                            <p class="mb-2">
+                                <span class="fw-semibold">Difficulty:</span>
+                                <span id="gameDifficulty"></span>
+                            </p>
+                            <a id="gameLink" href="#" class="btn btn-warning-custom mt-2">
+                                Play Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Roll history (dynamic HTML) -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h2 class="h5 text-primary-custom mb-0">Roll History</h2>
+                </div>
+                <div class="card-body">
+                    <p class="text-muted small">
+                        We keep track of your recent rolls so you can go back and try games you liked.
+                    </p>
+                    <ul id="historyList" class="list-unstyled mb-0">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+        <p class="mb-0">&copy; 2025 GameDen. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // This javascript lets  user roll a dice, and each roll picks a random game from our list and updates
+    // the page with the game's name, description, difficulty, and a link to the game page.
+
+    // Array of game objects that the dice can choose from.
+    const brainGames = [
+        {
+            name: "Sudoku Challenge",
+            description: "Train logic and number skills by solving Sudoku puzzles.",
+            difficulty: "Medium",
+            link: "sudoku.html"
+        },
+        {
+            name: "Rock Paper Scissors",
+            description: "Quick reaction and prediction game against the computer.",
+            difficulty: "Easy",
+            link: "rps.html"
+        },
+        {
+            name: "Brain Quiz",
+            description: "Test your knowledge with fun quiz questions.",
+            difficulty: "Medium-Hard",
+            link: "quiz.html"
+        },
+        {
+            name: "Smart Puzzle Finder",
+            description: "Use the Brain Calculator to get a puzzle level that fits you.",
+            difficulty: "Varies",
+            link: "calculate.html"
+        },
+        {
+            name: "All Games Collection",
+            description: "Browse the full library and discover new brain games.",
+            difficulty: "All levels",
+            link: "games.html"
+        }
+    ];
+
+    // Get references to the main elements we will update.
+    const diceButton = document.getElementById("diceButton");
+    const resultCard = document.getElementById("resultCard");
+    const gameName = document.getElementById("gameName");
+    const gameDescription = document.getElementById("gameDescription");
+    const gameDifficulty = document.getElementById("gameDifficulty");
+    const gameLink = document.getElementById("gameLink");
+    const historyList = document.getElementById("historyList");
+    const diceHint = document.getElementById("diceHint");
+
+    //  Helper function: returns a random game object from the brainGames array using Math.random().
+    function getRandomGame() {
+        const randomIndex = Math.floor(Math.random() * brainGames.length);
+        return brainGames[randomIndex];
+    }
+
+    // Helper function: adds a short text entry to the roll history list so the user can see previous results.
+    function addToHistory(game) {
+        const li = document.createElement("li");
+        li.className = "history-item mb-1";
+        li.textContent = "🎲 " + game.name + " (" + game.difficulty + ")";
+        historyList.prepend(li); // newest roll at the top
+    }
+
+    //  Main event: when the user clicks the dice, we:
+    //    - pick a random game,
+    //    - update the result card,
+    //    - make sure the card is visible,
+    //    - and log the choice in the history.
+    diceButton.addEventListener("click", function () {
+        const selectedGame = getRandomGame();
+
+        // animation for the dice roll
+        diceButton.style.transform = "rotate(20deg)";
+        setTimeout(function () {
+            diceButton.style.transform = "rotate(0deg)";
+        }, 150);
+
+        // Update main result card content
+        gameName.textContent = selectedGame.name;
+        gameDescription.textContent = selectedGame.description;
+        gameDifficulty.textContent = selectedGame.difficulty;
+        gameLink.href = selectedGame.link;
+
+        // Show the card if it was hidden
+        resultCard.classList.remove("d-none");
+
+        // Update hint below dice
+        diceHint.textContent = "You can roll again to get another recommendation.";
+
+        // Add entry to history
+        addToHistory(selectedGame);
+    });
+</script>
+
+</body>
+</html>
