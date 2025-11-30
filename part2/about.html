@@ -27,15 +27,43 @@
         .search-box {
             border: 2px solid var(--primary-purple);
         }
+        #logo-icon {
+           width: 40px; 
+           height: 40px;
+        }
+
     </style>
 </head>
 <body>
+     <!-- Bootstrap Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
-                <img id="logo-icon" src="images/logo.png" alt="GameDen Logo" class="me-2" style="width:40px;height:40px;">
+                <img src="images/logo.png" id="logo-icon" alt="GameDen Logo" class="me-2" >
                 GameDen
             </a>
+            
+            
+            
+            <div class="navbar navbar-expand-sm" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="games.html">Games</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 
