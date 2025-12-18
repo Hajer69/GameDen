@@ -134,88 +134,13 @@
 
                             <div class="text-center">
                                 <p class="mb-0">Don't have an account? 
-                                    <a href="#" class="text-decoration-none fw-bold text-primary-custom" onclick="showSignup()">Sign Up</a>
+                                    <a href="signup.html" class="text-decoration-none fw-bold text-primary-custom" onclick="showSignup()">Sign Up</a>
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Signup Form -->
-                    <div class="card shadow-sm border-0 d-none" id="signupForm">
-                        <div class="card-body p-4">
-                            <h2 class="text-center fw-bold text-muted-custom mb-4">Create Account</h2>
-                            
-                            <form action="https://httpbin.org/get" method="GET" class="needs-validation" novalidate>
-                                <div class="mb-3">
-                                    <label for="fullname" class="form-label fw-bold">Full Name:</label>
-                                    <input type="text" class="form-control" id="fullname" name="fullname" required>
-                                    <div class="invalid-feedback">
-                                        Please enter your full name.
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="new_username" class="form-label fw-bold">Username:</label>
-                                    <input type="text" class="form-control" id="new_username" name="new_username" required>
-                                    <div class="invalid-feedback">
-                                        Please choose a username.
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="new_email" class="form-label fw-bold">Email:</label>
-                                    <input type="email" class="form-control" id="new_email" name="new_email" required>
-                                    <div class="invalid-feedback">
-                                        Please enter a valid email.
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="new_password" class="form-label fw-bold">Password:</label>
-                                        <input type="password" class="form-control" id="new_password" name="new_password" required>
-                                        <div class="invalid-feedback">
-                                            Please enter a password.
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="confirm_password" class="form-label fw-bold">Confirm Password:</label>
-                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
-                                        <div class="invalid-feedback">
-                                            Please confirm your password.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="favorite_game" class="form-label fw-bold">Favorite Game:</label>
-                                    <select class="form-select" id="favorite_game" name="favorite_game">
-                                        <option value="">Choose a game</option>
-                                        <option value="tictactoe">Tic Tac Toe</option>
-                                        <option value="sudoku">Sudoku</option>
-                                        <option value="rps">Rock Paper Scissors</option>
-                                        <option value="quiz">Brain Quiz</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3 form-check">
-                                    <input type="checkbox" class="form-check-input" id="terms" name="terms" required>
-                                    <label class="form-check-label" for="terms">I agree to the terms and conditions</label>
-                                    <div class="invalid-feedback">
-                                        You must agree to the terms.
-                                    </div>
-                                </div>
-
-                                <button type="submit" class="btn btn-lg w-100 text-white mb-3">Create Account</button>
-                            </form>
-
-                            <div class="text-center">
-                                <p class="mb-0">Already have an account? 
-                                    <a href="#" class="text-decoration-none fw-bold text-primary-custom" onclick="showLogin()">Sign In</a>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -228,18 +153,5 @@
         </div>
     </footer>
 
-
-    <script>
-        // Interactive Components : Login/Signup Form Toggle
-        function showSignup() {
-            document.getElementById('loginForm').classList.add('d-none');
-            document.getElementById('signupForm').classList.remove('d-none');
-        }
-
-        function showLogin() {
-            document.getElementById('signupForm').classList.add('d-none');
-            document.getElementById('loginForm').classList.remove('d-none');
-        }
-    </script>
 </body>
 </html>

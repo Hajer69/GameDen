@@ -159,7 +159,7 @@
                     </div>
 
                     <!-- Form Sections -->
-                    <form id="feedbackForm">
+                    <form id="feedbackForm" onsubmit="return validateQuestionnaireForm();">
                         <!-- Section 1: Personal Information -->
                         <div class="form-section">
                             <h2 class="h4 mb-4 text-primary-custom"> User Information </h2>
@@ -301,146 +301,9 @@
             <p class="mb-0">&copy; 2025 GameDen. Student Project.</p>
         </div>
     </footer>
-
+    
     <!-- JavaScript -->
-    <script>
-        // Function to hide all error messages and remove invalid styling
-        // This function is called before validation to clear any previous errors
-        function hideAllErrors() {
-            // Get all elements with the class 'error-message'
-            let errors = document.querySelectorAll('.error-message');
-            
-            // Loop through each error message and hide it
-            for (let i = 0; i < errors.length; i++) {
-                errors[i].style.display = 'none';
-            }
-    
-            // Get all form inputs and select elements
-            let inputs = document.querySelectorAll('.form-control, .form-select');
-    
-            // Loop through each input and remove the red border (is-invalid class)
-            for (let i = 0; i < inputs.length; i++) {
-                inputs[i].classList.remove('is-invalid');
-            }
-        }        
+     <script src="validation.js"></script>
 
-        // Function to show error for a specific field
-        // This adds red border to the input and displays the error message
-        function showError(fieldId, errorId) {
-            // Add red border to the input field
-            document.getElementById(fieldId).classList.add('is-invalid');
-            // Display the error message below the field
-            document.getElementById(errorId).style.display = 'block';
-        }
-
-        // Main validation function that runs when form is submitted
-        // This is attached to the form's submit event
-        document.getElementById("feedbackForm").addEventListener("submit", function (event) {
-            // Prevent the form from submitting normally
-            // This allows us to validate first before submission
-            event.preventDefault();
-
-            // Clear any previous error messages and styling
-            hideAllErrors();
-
-            // ========== GET FORM VALUES ==========
-            // Get the username value and remove any extra spaces
-            let username = document.getElementById("username").value.trim();
-    
-            // Get the password value
-            let password = document.getElementById("password").value;
-    
-            // Get the age value
-            let age = document.getElementById("age").value;
-    
-            // Check if any rating radio button is selected
-            let rating = document.querySelector('input[name="rating"]:checked');
-    
-            // Get the selected favorite game value
-            let favoriteGame = document.getElementById("favorite_game").value;
-    
-            // Get all checked improvement checkboxes
-            let checkboxes = document.querySelectorAll('input[name="improvements"]:checked');
-
-            // Track if the form is valid (start as true)
-            let valid = true;
-
-            // ========== ADVANCED VALIDATION 1: USERNAME PATTERN ==========
-            // Regular expression pattern for username validation:
-            // ^[A-Za-z0-9_]{5,}$ means:
-            // ^ - start of string
-            // [A-Za-z0-9_] - allows uppercase letters, lowercase letters, numbers, and underscores
-            // {5,} - must be at least 5 characters long (no maximum limit)
-            // $ - end of string
-            let usernamePattern = /^[A-Za-z0-9_]{4,}$/;
-    
-            // Test if username matches the pattern
-            if (!usernamePattern.test(username)) {
-                // If validation fails, show error and mark form as invalid
-                showError('username', 'usernameError');
-                valid = false;
-            }
-
-            // ========== ADVANCED VALIDATION 2: PASSWORD PATTERN ==========
-            // Regular expression pattern for password validation:
-            // ^[A-Za-z0-9@]{8,}$ means:
-            // ^ - start of string
-            // [A-Za-z0-9@] - allows uppercase letters, lowercase letters, numbers, and @ symbol
-            // {8,} - must be at least 8 characters long (no maximum limit)
-            // $ - end of string
-            let passwordPattern = /^[A-Za-z0-9@]{8,}$/;
-    
-            // Test if password matches the pattern
-            if (!passwordPattern.test(password)) {
-                // If validation fails, show error and mark form as invalid
-                showError('password', 'passwordError');
-                valid = false;
-            }
-
-            // ========== ADVANCED VALIDATION 3: AGE RANGE VALIDATION ==========
-            // Check if age is valid:
-            // - Must not be empty
-            // - Must be a valid number (not NaN)
-            // - Must be greater than 5
-            if (age === "" || isNaN(age) || parseFloat(age) <= 4) {
-                // If validation fails, show error and mark form as invalid
-                showError('age', 'ageError');
-                valid = false;
-            }
-
-            // ========== BASIC VALIDATIONS FOR OTHER FIELDS ==========
-            
-            // Favorite game validation: must select a game from dropdown
-            if (favoriteGame === "") {
-                showError('favorite_game', 'gameError');
-                valid = false;
-            }
-
-            // Rating validation: must select one radio button
-            if (!rating) {
-                // For radio buttons, we just show the error message (no border to add)
-                document.getElementById('ratingError').style.display = 'block';
-                valid = false;
-            }
-
-            // Improvements validation: must select at least 2 checkboxes
-            // checkboxes.length tells us how many checkboxes are checked
-            if (checkboxes.length < 2) {
-                // For checkboxes, we just show the error message (no border to add)
-                document.getElementById('improvementsError').style.display = 'block';
-                valid = false;
-            }
-
-            // ========== FINAL VALIDATION CHECK ==========
-            // If all validations passed (valid is still true)
-            if (valid) {
-                // Hide the form to prevent further editing
-                document.getElementById("feedbackForm").style.display = "none";
-                // Show the success message to the user
-                document.getElementById("successMessage").style.display = "block";
-            }
-            // If valid is false, the form stays visible with error messages
-            });
-    </script>
 </body>
 </html>
