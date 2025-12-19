@@ -1,20 +1,21 @@
 <?php
-// Admin dashboard with search and CRUD operations
 
 // Database configuration
 $host = 'localhost';
 $user = 'root';
-$pass = 'root';
-$dbname = 'gameden_db';
-$port = 8889;
+$pass = '';
+$dbname = 'gamedendb';
 
 // Create connection
-$conn = new mysqli($host, $user, $pass, $dbname, $port);
+$conn = new mysqli($host, $user, $pass, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+
+// Initialize count_row
+$count_row = ['total' => 0];
 
 // Process DELETE request
 if (isset($_GET['delete_id'])) {
@@ -41,6 +42,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_id'])) {
     } else {
         $update_error = "Error updating message: " . $conn->error;
     }
+}
+
+// Count total messages
+$count_sql = "SELECT COUNT(*) as total FROM contact_messages";
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $search_term = $conn->real_escape_string($_GET['search']);
+    $count_sql = "SELECT COUNT(*) as total FROM contact_messages 
+                 WHERE name LIKE '%$search_term%' 
+                 OR email LIKE '%$search_term%' 
+                 OR message LIKE '%$search_term%'";
+}
+$count_result = $conn->query($count_sql);
+if ($count_result) {
+    $count_row = $count_result->fetch_assoc();
+} else {
+    $count_row = ['total' => 0];
 }
 ?>
 <!DOCTYPE html>
@@ -113,20 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_id'])) {
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4>Contact Messages</h4>
                 <span class="badge bg-primary">
-                    <?php
-                    // Count total messages
-                    $count_sql = "SELECT COUNT(*) as total FROM contact_messages";
-                    if (isset($_GET['search']) && !empty($_GET['search'])) {
-                        $search_term = $conn->real_escape_string($_GET['search']);
-                        $count_sql = "SELECT COUNT(*) as total FROM contact_messages 
-                                     WHERE name LIKE '%$search_term%' 
-                                     OR email LIKE '%$search_term%' 
-                                     OR message LIKE '%$search_term%'";
-                    }
-                    $count_result = $conn->query($count_sql);
-                    $count_row = $count_result->fetch_assoc();
-                    echo $count_row['total'] . " messages";
-                    ?>
+                    <?php echo $count_row['total'] . " messages"; ?>
                 </span>
             </div>
 
@@ -144,8 +148,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_id'])) {
             // Fetch messages from database
             $sql = "SELECT * FROM contact_messages $search_condition ORDER BY created_at DESC";
             $result = $conn->query($sql);
-
-            if ($result->num_rows > 0): ?>
+            
+            // Check if query succeeded
+            if ($result === FALSE) {
+                echo '<div class="alert alert-danger">';
+                echo '<h5>Database Query Error</h5>';
+                echo '<p>Error: ' . $conn->error . '</p>';
+                echo '<p>SQL: ' . htmlspecialchars($sql) . '</p>';
+                echo '</div>';
+            } elseif ($result->num_rows > 0) { 
+            ?>
+            
                 <div class="table-responsive">
                     <table class="table table-hover">
                         <thead class="table-dark">
@@ -191,7 +204,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_id'])) {
                                     <small><?php echo date('M d, Y', strtotime($row['created_at'])); ?></small>
                                 </td>
                                 <td>
-                                    <!-- UPDATE button (inline form above) -->
                                     <!-- DELETE button -->
                                     <a href="admin_panel.php?delete_id=<?php echo $row['id']; ?>" 
                                        class="btn btn-danger btn-sm"
@@ -204,7 +216,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_id'])) {
                         </tbody>
                     </table>
                 </div>
-            <?php else: ?>
+            
+            <?php 
+            } else { 
+            ?>
+            
                 <div class="alert alert-info">
                     No messages found. 
                     <?php if (isset($_GET['search'])): ?>
@@ -213,7 +229,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_id'])) {
                         <a href="contact.html">Send a test message</a>
                     <?php endif; ?>
                 </div>
-            <?php endif; ?>
+            
+            <?php 
+            } 
+            ?>
         </div>
 
         <!-- Database Info -->
@@ -221,7 +240,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update_id'])) {
             <div class="card-body">
                 <h5 class="card-title">Database Information</h5>
                 <p class="card-text">
-                    <strong>Database:</strong> gameden_db<br>
+                    <strong>Database:</strong> gamedendb<br>
                     <strong>Tables:</strong> contact_messages, users<br>
                     <strong>Total Messages:</strong> <?php echo $count_row['total']; ?><br>
                     <strong>Connection:</strong> <?php echo $conn->host_info; ?>
