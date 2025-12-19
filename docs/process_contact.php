@@ -1,12 +1,12 @@
 <?php
 $host = 'localhost';
 $user = 'root';
-$pass = 'root';
-$dbname = 'gameden_db';
-$port = 8889;
+$pass = '';
+$dbname = 'gamedendb';
+
 
 // Create connection
-$conn = new mysqli($host, $user, $pass, $dbname, $port);
+$conn = new mysqli($host, $user, $pass, $dbname);
 
 // Check connection
 if ($conn->connect_error) {
