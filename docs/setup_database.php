@@ -1,31 +1,33 @@
 <?php
 
-// Database connection parameters
+
 $host = 'localhost';
 $user = 'root';
-$pass = 'root';
-$port = 8889;
+$pass = '';
 
-// Create connection without database selected
-$conn = new mysqli($host, $user, $pass, '', $port);
+// Create connection
+$conn = new mysqli($host, $user, $pass);
 
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-echo "<h3>Database Setup for GameDen</h3>";
+// Database name
+$dbname = 'gamedendb';
 
-// Create database if not exists
-$sql = "CREATE DATABASE IF NOT EXISTS gameden_db CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci";
+echo "<h2>GameDen Database Setup</h2>";
+
+// Create database
+$sql = "CREATE DATABASE IF NOT EXISTS $dbname";
 if ($conn->query($sql) === TRUE) {
-    echo "<p>✅ Database 'gameden_db' created successfully</p>";
+    echo "✅ Database '$dbname' created<br>";
 } else {
-    echo "<p>❌ Error creating database: " . $conn->error . "</p>";
+    echo "❌ Error: " . $conn->error . "<br>";
 }
 
-// Select the database
-$conn->select_db('gameden_db');
+// Select database
+$conn->select_db($dbname);
 
 // Create contact_messages table
 $sql = "CREATE TABLE IF NOT EXISTS contact_messages (
@@ -39,9 +41,9 @@ $sql = "CREATE TABLE IF NOT EXISTS contact_messages (
 )";
 
 if ($conn->query($sql) === TRUE) {
-    echo "<p>✅ Table 'contact_messages' created successfully</p>";
+    echo "✅ Table 'contact_messages' created<br>";
 } else {
-    echo "<p>❌ Error creating table: " . $conn->error . "</p>";
+    echo "❌ Error: " . $conn->error . "<br>";
 }
 
 // Create users table
@@ -54,28 +56,31 @@ $sql = "CREATE TABLE IF NOT EXISTS users (
 )";
 
 if ($conn->query($sql) === TRUE) {
-    echo "<p>✅ Table 'users' created successfully</p>";
+    echo "✅ Table 'users' created<br>";
 } else {
-    echo "<p>❌ Error creating table: " . $conn->error . "</p>";
+    echo "❌ Error: " . $conn->error . "<br>";
 }
 
-// Insert sample users
-$sql = "INSERT IGNORE INTO users (username, email, password) VALUES 
-    ('admin', 'admin@gameden.com', '" . password_hash('admin123', PASSWORD_DEFAULT) . "'),
-    ('player1', 'player1@gameden.com', '" . password_hash('player123', PASSWORD_DEFAULT) . "'),
-    ('gamer2', 'gamer2@gameden.com', '" . password_hash('gamer456', PASSWORD_DEFAULT) . "')";
+// Add sample user
+$sql = "INSERT IGNORE INTO users (username, email, password) 
+        VALUES ('testuser', 'test@example.com', '" . password_hash('test123', PASSWORD_DEFAULT) . "')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "<p>✅ Sample users inserted</p>";
-} else {
-    echo "<p>❌ Error inserting users: " . $conn->error . "</p>";
+    echo "✅ Sample user added<br>";
 }
 
-$conn->close();
+echo "<div style='background: #d4edda; padding: 15px; margin-top: 20px; border-radius: 5px;'>
+        <h3>✅ Setup Complete!</h3>
+        <p>Database '$dbname' is ready.</p>
+        <p>
+            <a href='admin_panel.php' style='padding: 8px 15px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;'>
+                Admin Panel
+            </a>
+            <a href='contact.html' style='padding: 8px 15px; background: #28a745; color: white; text-decoration: none; border-radius: 4px;'>
+                Contact Form
+            </a>
+        </p>
+      </div>";
 
-echo "<div class='alert alert-success mt-3'>";
-echo "<h4>Setup Completed!</h4>";
-echo "<p>Database and tables are ready.</p>";
-echo "<p><a href='admin_panel.php' class='btn btn-primary'>Go to Admin Panel</a></p>";
-echo "</div>";
+$conn->close();
 ?>
