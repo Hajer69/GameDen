@@ -118,7 +118,9 @@
                     <!-- Contact Form -->
                     <div class="card shadow-sm border-0">
                         <div class="card-body p-4">
-                            <form action="https://httpbin.org/get" method="GET" class="needs-validation" novalidate>
+                            <!-- MODIFIED: Changed action from https://httpbin.org/get to process_contact.php -->
+                            <!-- MODIFIED: Changed method from GET to POST for better security -->
+                            <form action="process_contact.php" method="POST" class="needs-validation" novalidate>
                                 <div class="row">
                                     <div class="col-md-6 mb-3">
                                         <label for="name" class="form-label fw-bold">Your Name:</label>
@@ -163,7 +165,7 @@
                                     <label class="form-check-label" for="newsletter">Send me game updates</label>
                                 </div>
 
-                                <button type="submit"  class="btn  btn-lg w-100 text-white">Send Message</button>
+                                <button type="submit" class="btn btn-lg w-100 text-white">Send Message</button>
                             </form>
                         </div>
                     </div>
@@ -188,7 +190,6 @@
             <p class="mb-0">&copy; 2025 GameDen. All rights reserved.</p>
         </div>
     </footer>
-
 
 </body>
 </html>
