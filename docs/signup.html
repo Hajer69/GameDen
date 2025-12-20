@@ -111,8 +111,7 @@
               <h2 class="text-center fw-bold mb-4 text-primary-custom">Create Account</h2>
 
               
-              <form id="signupForm" method="POST" onsubmit="return validateSignupForm();" novalidate>
-
+            <form id="signupForm" method="POST" action="process_signup.php" onsubmit="return validateSignupForm();" novalidate>
                 <div class="mb-3">
                   <label for="fullname" class="form-label fw-bold">Full Name:</label>
                   <input type="text" class="form-control" id="fullname" name="fullname">

@@ -5,23 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Have fun with GameDen, Play interactive online games! Challenge yourself with Sudoku, Rock Paper Scissors, and many more games.">
     <title>GameDen - Brain Calculator</title>
+
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-     <!-- Bootstrap JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <!-- Custom theme colors -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
     <style>
         :root {
             --primary-blue: #203079;
             --primary-purple: #7C4DFF;
             --accent-orange: #FFB300;
         }
-        .display-4 {
-            color: #203079;
-        }
-        .h3 {
-            color: #203079;
-        }
+        .display-4 { color: #203079; }
+        .h3 { color: #203079; }
         .bg-primary-custom {
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-purple) 100%) !important;
         }
@@ -40,80 +39,36 @@
             padding: 1rem;
             text-align: left;
         }
-        .goals-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .goals-list li {
-            padding: 0.5rem 0;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-
-        .goals-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #7C4DFF;
-            font-weight: bold;
-        }
-        .course-info {
-            background: #e8f4f8;
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
-        }
-        #logo-icon {
-           width: 40px; 
-           height: 40px;
-        }
-
-        h1{
-            color:#1f3b88;
-            margin-top: 5%;
-        }
+        #logo-icon { width: 40px; height: 40px; }
+        h1 { color:#1f3b88; margin-top: 5%; }
     </style>
 </head>
+
 <body class="bg-light">
 
-  <!-- Bootstrap Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
-                <img src="images/logo.png" id="logo-icon" alt="GameDen Logo" class="me-2" >
-                GameDen
-            </a>
-            
-            <div class="navbar navbar-expand-sm" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="games.html">Games</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center fw-bold text-primary-custom" href="index.html">
+            <img src="images/logo.png" id="logo-icon" alt="GameDen Logo" class="me-2">
+            GameDen
+        </a>
 
-<!-- PAGE HEADER -->
+        <div class="navbar navbar-expand-sm" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="games.html">Games</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link btn btn-purple text-white ms-2" href="login.html">Sign In</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <section class="py-5 text-center">
     <div class="container">
-        <h1 class="fw-bold" >Brain Calculator</h1>
-        <p class="text-muted mb-0">
-            Puzzle Difficulty Recommender - find the best brain challenge for you.
-        </p>
+        <h1 class="fw-bold">Brain Calculator</h1>
+        <p class="text-muted mb-0">Puzzle Difficulty Recommender - find the best brain challenge for you.</p>
     </div>
 </section>
 
@@ -121,7 +76,6 @@
     <div class="row justify-content-center">
         <div class="col-lg-8">
 
-            <!-- INPUT CARD -->
             <div class="card shadow-sm mb-4">
                 <div class="card-body">
                     <h2 class="h4 mb-3 text-center">Tell us about your brain session</h2>
@@ -130,63 +84,44 @@
                         most suitable puzzle difficulty and game type.
                     </p>
 
-                    <form id="brainForm" novalidate>
+                    <form id="brainForm" method="POST" action="calculate_process.php" novalidate>
                         <div class="row g-3">
-                            <!-- Name -->
                             <div class="col-md-6">
                                 <label for="playerName" class="form-label">Player Name</label>
-                                <input type="text" class="form-control" id="playerName" required>
-                                <div class="invalid-feedback">
-                                    Please enter your name.
-                                </div>
+                                <input type="text" class="form-control" id="playerName" name="playerName" required>
+                                <div class="invalid-feedback">Please enter your name.</div>
                             </div>
 
-                            <!-- Age -->
                             <div class="col-md-6">
                                 <label for="age" class="form-label">Age</label>
-                                <input type="number" class="form-control" id="age" min="4" required>
-                                <div class="invalid-feedback">
-                                    Please enter a valid age (4 or above).
-                                </div>
+                                <input type="number" class="form-control" id="age" name="age" min="4" required>
+                                <div class="invalid-feedback">Please enter a valid age (4 or above).</div>
                             </div>
 
-                            <!-- Experience -->
                             <div class="col-md-6">
                                 <label for="experience" class="form-label">Puzzle Experience</label>
-                                <select class="form-select" id="experience" required>
+                                <select class="form-select" id="experience" name="experience" required>
                                     <option value="" selected disabled>Choose...</option>
                                     <option value="beginner">Beginner</option>
                                     <option value="intermediate">Intermediate</option>
                                     <option value="expert">Expert</option>
                                 </select>
-                                <div class="invalid-feedback">
-                                    Please select your experience level.
-                                </div>
+                                <div class="invalid-feedback">Please select your experience level.</div>
                             </div>
 
-                            <!-- Time -->
                             <div class="col-md-6">
-                                <label for="time" class="form-label">
-                                    Time Available (minutes)
-                                </label>
-                                <input type="number" class="form-control" id="time" min="5" required>
-                                <div class="invalid-feedback">
-                                    Please enter how many minutes you have (at least 5).
-                                </div>
+                                <label for="time" class="form-label">Time Available (minutes)</label>
+                                <input type="number" class="form-control" id="time" name="time" min="5" required>
+                                <div class="invalid-feedback">Please enter how many minutes you have (at least 5).</div>
                             </div>
 
-                            <!-- Focus level -->
                             <div class="col-md-12">
                                 <label for="focus" class="form-label">
                                     Focus Level (1 = tired, 5 = super focused)
                                 </label>
-                                <input type="range" class="form-range" id="focus" min="1" max="5" value="3">
+                                <input type="range" id="focus" name="focus" class="form-range" min="1" max="5" value="3">
                                 <div class="d-flex justify-content-between small text-muted">
-                                    <span>1</span>
-                                    <span>2</span>
-                                    <span>3</span>
-                                    <span>4</span>
-                                    <span>5</span>
+                                    <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
                                 </div>
                             </div>
                         </div>
@@ -196,10 +131,9 @@
                         </div>
 
                         <div class="d-grid d-md-flex justify-content-md-end gap-2 mt-4">
-                            <button type="button" class="btn btn-secondary" id="clearBtn">
-                                Clear
-                            </button>
-                            <button type="button" class="btn btn-warning fw-semibold" id="runBtn">
+                            <button type="button" class="btn btn-secondary" id="clearBtn">Clear</button>
+
+                            <button type="submit" class="btn btn-warning fw-semibold" id="runBtn">
                                 Run Brain Calculator
                             </button>
                         </div>
@@ -207,7 +141,6 @@
                 </div>
             </div>
 
-            <!-- RESULT CARD -->
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h2 class="h5 mb-3">Recommended Puzzle Session</h2>
@@ -236,18 +169,14 @@
     </div>
 </main>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2025 GameDen. All rights reserved.</p>
-        </div>
-    </footer>
-
+<footer class="bg-dark text-white py-4">
+    <div class="container text-center">
+        <p class="mb-0">&copy; 2025 GameDen. All rights reserved.</p>
+    </div>
+</footer>
 
 <script>
-    // Get needed DOM elements
     const form = document.getElementById("brainForm");
-    const runBtn = document.getElementById("runBtn");
     const clearBtn = document.getElementById("clearBtn");
     const formAlert = document.getElementById("formAlert");
 
@@ -256,16 +185,13 @@
     const scoreResult = document.getElementById("scoreResult");
     const summaryText = document.getElementById("summaryText");
 
-    // This is to remove validation styling
     function resetValidation() {
         const inputs = form.querySelectorAll(".form-control, .form-select");
-        inputs.forEach(function (input) {
-            input.classList.remove("is-invalid");
-        });
+        inputs.forEach(input => input.classList.remove("is-invalid"));
         formAlert.classList.add("d-none");
     }
 
-    // Main function for this webpage, which will calculate challengeScore and recommendation
+    // Returns true/false so we can block submit if invalid
     function runBrainCalculator() {
         resetValidation();
 
@@ -278,109 +204,62 @@
         const playerName = nameInput.value.trim();
         const age = parseInt(ageInput.value, 10);
         const time = parseInt(timeInput.value, 10);
-        const experience = experienceInput.value; // "beginner", "intermediate", "expert"
+        const experience = experienceInput.value;
         const focus = parseInt(focusInput.value, 10);
 
         let valid = true;
 
-        // Basic checks for required fields
-        if (playerName === "") {
-            nameInput.classList.add("is-invalid");
-            valid = false;
-        }
-        if (isNaN(age) || age < 4) {
-            ageInput.classList.add("is-invalid");
-            valid = false;
-        }
-        if (isNaN(time) || time < 5) {
-            timeInput.classList.add("is-invalid");
-            valid = false;
-        }
-        if (experience === "") {
-            experienceInput.classList.add("is-invalid");
-            valid = false;
-        }
+        if (playerName === "") { nameInput.classList.add("is-invalid"); valid = false; }
+        if (isNaN(age) || age < 4) { ageInput.classList.add("is-invalid"); valid = false; }
+        if (isNaN(time) || time < 5) { timeInput.classList.add("is-invalid"); valid = false; }
+        if (!experience) { experienceInput.classList.add("is-invalid"); valid = false; }
 
         if (!valid) {
             formAlert.classList.remove("d-none");
-            return; // stop if form is not valid
+            return false; // block submit
         }
-
-        // This part calculates the challenge score: This number will decide which puzzle level to recommend.
-        // The score is made from experience, time, focus, and age.
-        // I used +, -, * and / here because the project requires different math operators.
 
         let baseFromExperience = 0;
+        if (experience === "beginner") baseFromExperience = 30;
+        else if (experience === "intermediate") baseFromExperience = 60;
+        else if (experience === "expert") baseFromExperience = 90;
 
-        if (experience === "beginner") {
-            baseFromExperience = 30;
-        } else if (experience === "intermediate") {
-            baseFromExperience = 60;
-        } else if (experience === "expert") {
-            baseFromExperience = 90;
-        }
+        const cappedTime = Math.min(time, 60);
+        const focusFactor = focus * 5;
 
-        const cappedTime = Math.min(time, 60);       // limit at 60 minutes so extremely large numbers don't break the score
-        const focusFactor = focus * 5;               // Focus factor: scale the slider between 1 and 5 to 5, 10, 15, 20, 25
-
-
-        // younger kids and seniors get a small penalty
         let agePenalty = 0;
-        if (age < 12) {
-            agePenalty = 10;
-        } else if (age >= 60) {
-            agePenalty = 15;
-        }
+        if (age < 12) agePenalty = 10;
+        else if (age >= 60) agePenalty = 15;
 
-        // normalization divider
-        const timeContribution = cappedTime * 2;  
-        const ageAdjustment = agePenalty / 2;    
+        const timeContribution = cappedTime * 2;
+        const ageAdjustment = agePenalty / 2;
 
-        // final score
         const challengeScore = baseFromExperience + timeContribution + focusFactor - ageAdjustment;
-
-
-        // -----------------------------------------
-        // Decide difficulty & game using logic
-        // -----------------------------------------
 
         let difficultyText = "";
         let gameText = "";
 
-        // very young players
         if (age < 12) {
             difficultyText = "Easy";
             gameText = "Tic Tac Toe, simple pattern games, and short memory games.";
-        }
-        // seniors with enough time for training
-        else if (age >= 60 && time >= 20) {
+        } else if (age >= 60 && time >= 20) {
             difficultyText = "Brain-Healthy";
             gameText = "Relaxed Sudoku, gentle memory games, and focus puzzles.";
-        }
-        // Expert players with lots of time and high score
-        else if (experience === "expert" && time >= 20 && challengeScore >= 140) {
+        } else if (experience === "expert" && time >= 20 && challengeScore >= 140) {
             difficultyText = "Hard";
             gameText = "Hard Sudoku, logic grids, and advanced strategy puzzles.";
-        }
-        // Medium-hard
-        else if (challengeScore >= 110) {
+        } else if (challengeScore >= 110) {
             difficultyText = "Medium-Hard";
             gameText = "Standard Sudoku, timed memory games, and strategy puzzles.";
-        }
-        // Medium
-        else if (challengeScore >= 80) {
+        } else if (challengeScore >= 80) {
             difficultyText = "Medium";
             gameText = "4x4 Sudoku, memory match games, and pattern recognition.";
-        }
-        // Otherwise, easy
-        else {
+        } else {
             difficultyText = "Easy";
             gameText = "Tic Tac Toe, simple riddles, and quick brain teasers.";
         }
 
-        // -----------------------------------------
-        // Update UI
-        // -----------------------------------------
+        // UI preview BEFORE submit
         difficultyResult.textContent = difficultyText;
         gameResult.textContent = gameText;
         scoreResult.textContent = challengeScore.toFixed(1);
@@ -389,12 +268,13 @@
             playerName + ", based on your age, experience, time, and focus level, " +
             "we recommend a \"" + difficultyText + "\" puzzle session. " +
             "Your Brain Calculator challenge score is " + challengeScore.toFixed(1) + ".";
+
+        return true; //  allow submit
     }
 
-    // clear and reset to defaults
     function clearBrainForm() {
         form.reset();
-        document.getElementById("focus").value = 3; // reset slider to deafault
+        document.getElementById("focus").value = 3;
         resetValidation();
 
         difficultyResult.textContent = "—";
@@ -402,14 +282,41 @@
         scoreResult.textContent = "—";
 
         summaryText.textContent =
-            "Fill in the form and click \"Run Brain Calculator\" to see your " +
-            "personalized puzzle recommendation.";
+            "Fill in the form and click \"Run Brain Calculator\" to see your personalized puzzle recommendation.";
     }
 
-    runBtn.addEventListener("click", runBrainCalculator);
-    clearBtn.addEventListener("click", clearBrainForm);
-</script>
+    // Block submit unless valid
+    form.addEventListener("submit", function (e) {
+        const ok = runBrainCalculator();
+        if (!ok) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+    });
 
+    clearBtn.addEventListener("click", clearBrainForm);
+
+    //  After PHP redirects back, fill results from URL params
+    document.addEventListener("DOMContentLoaded", () => {
+        const params = new URLSearchParams(window.location.search);
+        const difficulty = params.get("difficulty");
+        const game = params.get("game");
+        const score = params.get("score");
+        const name = params.get("name");
+
+        if (difficulty && game && score) {
+            difficultyResult.textContent = difficulty;
+            gameResult.textContent = game;
+            scoreResult.textContent = score;
+
+            summaryText.textContent =
+                (name ? name + ", " : "") +
+                `based on your age, experience, time, and focus level, we recommend a "${difficulty}" puzzle session. ` +
+                `Your Brain Calculator challenge score is ${score}.`;
+
+        }
+    });
+</script>
 
 </body>
 </html>

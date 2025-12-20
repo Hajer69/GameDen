@@ -31,58 +31,66 @@ function showFieldError(fieldId, errorId) {
 // Form 1: Questionnaire Validation
 // ================================
 function validateQuestionnaireForm() {
-  clearErrors("feedbackForm");
   let valid = true;
 
-  const username = document.getElementById("username").value.trim();
-  const password = document.getElementById("password").value;
-  const ageStr = document.getElementById("age").value;
-  const favoriteGame = document.getElementById("favorite_game").value;
-
-  const rating = document.querySelector('input[name="rating"]:checked');
-  const improvements = document.querySelectorAll('input[name="improvements"]:checked');
-
-  // Required + Regex: username (letters/numbers/_ , min 4)
-  const usernamePattern = /^[A-Za-z0-9_]{4,}$/;
-  if (!usernamePattern.test(username)) {
-    showFieldError("username", "usernameError");
+  // Helpers
+  function showError(input, errorId) {
+    input.classList.add("is-invalid");
+    document.getElementById(errorId).style.display = "block";
     valid = false;
   }
-
-  // Required + Regex: password (letters/numbers/@, min 8)
-  const passwordPattern = /^[A-Za-z0-9@]{8,}$/;
-  if (!passwordPattern.test(password)) {
-    showFieldError("password", "passwordError");
-    valid = false;
+  function hideError(input, errorId) {
+    input.classList.remove("is-invalid");
+    document.getElementById(errorId).style.display = "none";
   }
 
-  // Range: age must be 5+
-  const age = parseInt(ageStr, 10);
-  if (isNaN(age) || age < 5 || age > 110) {
-    showFieldError("age", "ageError");
-    valid = false;
-  }
+  // Inputs
+  const username = document.getElementById("username");
+  const password = document.getElementById("password");
+  const age = document.getElementById("age");
+  const favoriteGame = document.getElementById("favorite_game");
 
-  // Required: dropdown selection
-  if (favoriteGame === "") {
-    showFieldError("favorite_game", "gameError");
-    valid = false;
-  }
+  // Regex rules 
+  const usernameRegex = /^[A-Za-z0-9_]{4,}$/;
+  const passwordRegex = /^[A-Za-z0-9@]{8,}$/;
 
-  // Required: rating radio
-  if (!rating) {
+  // Username
+  if (!usernameRegex.test(username.value.trim())) showError(username, "usernameError");
+  else hideError(username, "usernameError");
+
+  // Password
+  if (!passwordRegex.test(password.value.trim())) showError(password, "passwordError");
+  else hideError(password, "passwordError");
+
+  // Age
+  const ageVal = parseInt(age.value, 10);
+  if (isNaN(ageVal) || ageVal < 5) showError(age, "ageError");
+  else hideError(age, "ageError");
+
+  // Favorite game
+  if (favoriteGame.value === "") showError(favoriteGame, "gameError");
+  else hideError(favoriteGame, "gameError");
+
+  // Rating
+  const ratingChecked = document.querySelector('input[name="rating"]:checked');
+  if (!ratingChecked) {
     document.getElementById("ratingError").style.display = "block";
     valid = false;
+  } else {
+    document.getElementById("ratingError").style.display = "none";
   }
 
-  // Logical: at least 2 improvements
-  if (improvements.length < 2) {
+  const improvementsChecked = document.querySelectorAll('input[name="improvements[]"]:checked');
+  if (improvementsChecked.length < 2) {
     document.getElementById("improvementsError").style.display = "block";
     valid = false;
+  } else {
+    document.getElementById("improvementsError").style.display = "none";
   }
 
-  return valid;
+  return valid; 
 }
+
 
 // ================================
 // Form 2: Signup Validation 
